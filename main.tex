@@ -4,9 +4,15 @@
 \WarningFilter{chktex}{You should perhaps use `\max' instead.} % - doesn't work
 
 \documentclass[11pt,twocolumn,abstract=true]{scrartcl}
+% Documentclass-options
 
 %%%%% Workarounds %%%%%
 \setlength{\marginparwidth}{2cm} % without: trouble with todonotes
+
+\newcommand*\appendixmore{% add title to Abstract
+  \addsec{\appendixname}%
+  \renewcommand{\thesubsection}{\Alph{subsection}}%
+}
 %%%%% Workarounds %%%%%
 
 
@@ -61,10 +67,13 @@
 
 % Mainmatter
 \input{Document-Structure/02_Mainmatter/01_Introduction}
-\input{Document-Structure/02_Mainmatter/02_General-Concepts}
-\input{Document-Structure/02_Mainmatter/03_Gradient-Based}
-\input{Document-Structure/02_Mainmatter/04_Perturbation-Based}
-\input{Document-Structure/02_Mainmatter/05_Discussion}
+\input{Document-Structure/02_Mainmatter/02_Background}
+\input{Document-Structure/02_Mainmatter/03_General-Concepts}
+\input{Document-Structure/02_Mainmatter/04_Gradient-Based}
+\input{Document-Structure/02_Mainmatter/05_Perturbation-Based}
+\input{Document-Structure/02_Mainmatter/06_Findings}
+\input{Document-Structure/02_Mainmatter/07_Discussion}
+
 
 % Backmatter
 \input{Document-Structure/03_Appendices}
