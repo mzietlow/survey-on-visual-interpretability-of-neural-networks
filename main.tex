@@ -1,0 +1,77 @@
+% Ignorierte Warnings
+\RequirePackage{silence}
+\WarningFilter{chktex}{You should perhaps use `\min' instead.} % unfortunately -
+\WarningFilter{chktex}{You should perhaps use `\max' instead.} % - doesn't work
+
+\documentclass[11pt,twocolumn,abstract=true]{scrartcl}
+
+%%%%% Workarounds %%%%%
+\setlength{\marginparwidth}{2cm} % without: trouble with todonotes
+%%%%% Workarounds %%%%%
+
+
+% Language-Encoding
+\usepackage{polyglossia}        % Alternative zu Babel
+\setmainlanguage[variant=british]{english}
+\setotherlanguage[babelshorthands=true]{german}
+
+
+% Citation, Verweise
+\usepackage[backend=biber]{biblatex}
+\addbibresource{BibLaTex/citation_db.bib}
+\usepackage{csquotes}           % Bei Polyglossia+Babel empfohlen
+\usepackage{nameref}
+\usepackage{listings}           % Paket zum Einfügen von Source Code.
+                                % refer to 'minted vs. texments vs. verbments'
+
+
+% Fonts
+\usepackage{fontspec}
+\usepackage{glossaries} % \gls{<golssary-entry>} muss vor unicode-math geladen werden
+\usepackage{unicode-math} % fontspec wird auch von unicode-math geladen
+\setkomafont{disposition}{\normalfont\bfseries}
+\setmainfont{TeX Gyre Pagella}
+\setmathfont[ItalicFont=*, BoldFont=*]{TeX Gyre Pagella Math}
+% \setmainfont{Times New Roman} - Unverhältnismäßig hässlich. Besser keine Font
+% setzen.
+
+
+% Sonstiges                     % Einfügen von Grafiken
+\usepackage{graphicx}
+\graphicspath{ {./bilder/} }
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}     % Unterstreichen von Text mit \uline
+\usepackage{titling}  
+\usepackage{blindtext}          % Repräsentativer als Lorem Ipsum
+\usepackage{kantlipsum}         % Cooler als blindtext
+\usepackage{todonotes} % Einfügen von Todos, Option: [disable]
+\usepackage{url,hyperref}
+
+\author{Malte Zietlow, Anna-Lena Büßelmann}
+
+\begin{document}
+
+\title{Survey: Visual Approaches Towards Interpretability Of Neural Networks}
+\maketitle
+
+
+% Frontmatter
+\listoftodos{}            % Aktuelle ToDo-Notes
+\input{Document-Structure/01_Frontmatter/01_Abstract}
+
+% Mainmatter
+\input{Document-Structure/02_Mainmatter/01_Introduction}
+\input{Document-Structure/02_Mainmatter/02_General-Concepts}
+\input{Document-Structure/02_Mainmatter/03_Gradient-Based}
+\input{Document-Structure/02_Mainmatter/04_Perturbation-Based}
+\input{Document-Structure/02_Mainmatter/05_Discussion}
+
+% Backmatter
+\input{Document-Structure/03_Appendices}
+\input{Document-Structure/03_Backmatter/01_Tabellenverzeichnis}
+\input{Document-Structure/03_Backmatter/02_Abbildungsverzeichnis}
+\input{Document-Structure/03_Backmatter/03_Abkuerzungsverzeichnis}
+\input{Document-Structure/03_Backmatter/04_Glossar}
+\input{Document-Structure/05_GlossarMetadaten}
+
+\end{document}
