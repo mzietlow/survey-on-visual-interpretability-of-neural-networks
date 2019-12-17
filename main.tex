@@ -27,20 +27,21 @@
 
 % Citation, Verweise
 \usepackage[backend=biber]{biblatex}
-\addbibresource{BibLaTex/citation_db.bib}
+\addbibresource{BibLaTex/citavi_db.bib}
 \usepackage{csquotes}           % Bei Polyglossia+Babel empfohlen
 \usepackage{nameref}
 \usepackage{listings}           % Paket zum Einfügen von Source Code.
                                 % refer to 'minted vs. texments vs. verbments'
-
+\usepackage{hyperref}
 
 % Fonts
 \usepackage{fontspec}
 \usepackage{glossaries} % \gls{<golssary-entry>} muss vor unicode-math geladen werden
+\setacronymstyle{long-short}
 \usepackage{unicode-math} % fontspec wird auch von unicode-math geladen
 \setkomafont{disposition}{\normalfont\bfseries}
 \setmainfont{TeX Gyre Pagella}
-\setmathfont[ItalicFont=*, BoldFont=*]{TeX Gyre Pagella Math}
+% \setmathfont{TeX Gyre Pagella Math} Somehow faulty with \mathscr
 % \setmainfont{Times New Roman} - Unverhältnismäßig hässlich. Besser keine Font
 % setzen.
 
@@ -54,10 +55,11 @@
 \usepackage{blindtext}          % Repräsentativer als Lorem Ipsum
 \usepackage{kantlipsum}         % Cooler als blindtext
 \usepackage{todonotes}          % Einfügen von Todos, Option: [disable]
-\usepackage{url,hyperref}
 \usepackage[shortcuts]{extdash} % \=/ for nonbreaking dash
+\usepackage{url}
 
 \author{Malte Zietlow, Anna-Lena Büßelmann}
+\makeglossaries{}
 
 \begin{document}
 

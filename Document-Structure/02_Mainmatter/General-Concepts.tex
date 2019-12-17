@@ -2,5 +2,71 @@
 \blindtext[3]
 \subsection{Types of Explanation}
 \blindtext[3]
-\subsection{Metrices}
+
+\subsection{Axioms}
+Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
+
+\subsection{Sanity Checks for Saliency Maps}
+\blindtext[1]
+\subsubsection{Conservativity}
+\blindtext[1]
+\subsubsection{Continuity}
+\blindtext[1]
+\subsubsection{Implementation Invariance}
+\blindtext[1]
+\subsubsection{Selectivity/Fidelity}
+` Put another way, a method with high fidelity will assign high relevance to features that, when removed, greatly reduce the DNN’s output confidence in the class assignment, while assigning low relevance to features that do not greatly affect the confidence when removed. Fidelity cannot be established axiomatically, and so must be estimated using implementations of the explanation method with the DNN model and dataset under investigation.'\cite{Tomsett.2019} Also look up: \citeauthor{Bach.2015, AlvarezMelis.2018}.
+
+\subsection{Metrics}
+Although the field of heatmapping has received growing attention over the past decade, only little work has gone into the development of metrics. This is an issue, because absence of ground truth makes the search for metrics a non-trivial task. Further, a lack of (reliable) metrics leads to flaws in the comparison of methods.
+
+This subsection will provide a theoretical overview of commonly used metrics and their (known) issues.
+
+\subsubsection{Sanity Checks for Metrics}
+Just as for heatmaps, a set of sanity checks were proposed for metrics~.\cite{Tomsett.2019}. According to \citeauthor{Tomsett.2019}, metrics should accomplish to
+\begin{itemize}
+    \item measure the inteded property
+    \item provide consistent results
+\end{itemize}
+
+
+
+\subsubsection{Area Over the Perturbation Curve} Proposed by~\citeauthor{WojciechSamek.2015}~\cite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[pp. 34ff.]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
+
+\paragraph{Disabling Input Variables}
+Disabling input variables comes with the risk of violating dataset statistics such as mean and variance. A sample-perturbation function that disables the region \(\symbfit{r}_k\) in the input-sample \(\symbfit{x}\) is formally introduced as \(g(\symbfit{x}, \symbfit{r}_k)\). \citeauthor{WojciechSamek.2015} propose to four sample-perturbation functions
+\begin{itemize}
+    \item replacing each value in \(\symbfit{r}_p\) by sampling a uniform distribution \(\mathscr U\)
+    \item replacing each value in \(\symbfit{r}_p\) by sampling a Dirichlet distribution \(D\)
+    \item replacing each value in \(\symbfit{r}_p\) by the average value of all samples for the current input-variable
+    \item applying a Gaussian filter with \(\sigma = 3\) to \(\symbfit{r}_p\)
+\end{itemize}
+Note that the latter two, Gaussian filter and average value for the current input-variable, remove significantly less information from the input-sample than sampling from either \(\mathscr U\) or \(\mathscr D\).  Therefore (as removing information from the input-sample is the goal of disabling input variables) \citeauthor{WojciechSamek.2015} favor the first two, i.e.\ sampling \(\mathscr U\) or \(\mathscr D\).
+
+
+\paragraph{Most Relevant and Least Relevant First}
+\gls{morf} (eq1 and eq2) and \gls{lerf} (eq3 and eq4) are both defined recursively \todo{Correctly reference equations}
+\begin{align}
+    \symbfit{x}^{(0)}_{\text{MoRF}} &= \symbfit{x} \\
+    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{MoRF}} &= g(\symbfit{x}^{(k-1)}_{\text{MoRF}}, \symbfit{r}_k) \\
+    \symbfit{x}^{(0)}_{\text{LeRF}} &= \symbfit{x} \\
+    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{LeRF}} &= g(\symbfit{x}^{(k-1)}_{\text{LeRF}}, \symbfit{r}_{L+1-k})
+\end{align}
+where \(x^{(n)}_{\text{MoRF / LeRF}}, n \in [0, k]\) is the perturbed input-sample\todo{add \textit{input-sample} to glossary} at iteration \(n\) and by the respective order \gls{morf} / \gls{lerf}.
+
+\paragraph{Area Over the Perturbation Curve}
+The \gls{aopc} is then defined as
+\[
+    \text{AOPC}_M = 
+    \dfrac{\left\langle \sum_{k=0}^{L} f(\symbfit{x}^{(0)}_{M}) - f(\symbfit{x}^{(k)}_{M}) \right\rangle}{L+1},
+\]
+where \(\left< \cdot \right>\) denotes the average over all images in the \mbox{data set} and \(M \in \{\text{MoRF}, \text{LeRF}\}\).
+
+\paragraph{Sanity Checks}
+In a recent work by people, \gls{aopc} was criticized.
+
+\subsubsection{Faithfulness}
+\blindtext[1]
+\subsubsection{Remove And Retrain}
 \blindtext[3]
+\par
