@@ -1,0 +1,59 @@
+\setacronymstyle{long-short}
+
+% ----------------------------- Acronyms -----------------------------
+\newacronym{ml} {ML} {Machine Learning}
+\newacronym{skcm} {SKCM} {Simple K-Counting Machine}
+\newacronym{apoc} {AOPC} {Area Over the Perturbation Curve}
+\newacronym{morf} {MoRF} {Most Relevant First}
+\newacronym{lerf} {LeRF} {Least Relevant First}
+\newacronym{ai} {AI} {Artificial Intelligence}
+\newacronym{rnn} {RNN} {Recurrent Neural Network}
+\newacronym{cnn} {CNN} {Convolutional Neural Network}
+\newacronym{fcnn} {FCNN} {Fully Convolutional Neural Network}
+\newacronym{yolo} {YOLO} {You Only Look Once}
+\newacronym{ssd} {SSD} {Single Shot MultiBox Detector}
+\newacronym[description={A common activation function for neural neworks.
+\(f(x)=\max(0, x)\)}] {relu} {ReLU} {Rectified Linear Unit}
+
+\newacronym[description={Umsetzung eines Features oder Produktes mit zwar
+minimalem Funktionsumfang, aber dennoch konkretem Mehrwert für den Nutzer},
+plural={MVPs}] {mvp}{MVP}{Minimal Viable Product}
+
+% ----------------------------- Glossary Entries -----------------------------
+
+\newglossaryentry{feature map} {
+    name={feature map},
+    description={Output of a convolutional layer after applying an activation function like \gls{relu}}
+}
+
+\newglossaryentry{anchor} {
+    name={anchor},
+    description={Center of a bounding box},
+}
+
+\newglossaryentry{layer} {
+    name={layer},
+    description={Contextsensitive, either dense- or \gls{convolutional layer} 
+    as defined by in}}
+
+\newglossaryentry{convolutional layer} {
+    name={convolutional layer},
+    description={Composition of the convolutional operation and nonlinearity, 
+    partially referring to the `complex layer terminology' 
+    in~\cite[341]{IanGoodfellow.2016}}
+}
+
+\newglossaryentry{dense layer} {
+    name={dense layer},
+    description={Also: fully connected layer. Composition of the matrix operation and nonlinearity, partially referring to the `complex layer terminology' 
+    in~\cite[341]{IanGoodfellow.2016}} \todo{refine.~explain also conv in appendix.}
+}
+
+\newglossaryentry{deconvolutional layer} {
+    name={deconvolutional layer},
+    description={Deconvolutional layer. Composition of the deconvolutional 
+    operation and nonlinearity, partially referring to the `complex layer 
+    terminology' 
+    in~\cite[341]{IanGoodfellow.2016}} \todo{refine.~explain also conv in 
+    appendix.}
+}
