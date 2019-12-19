@@ -6,32 +6,36 @@
 \subsection{Axioms}
 Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
 
-\subsection{Sanity Checks for Saliency Maps}
-\blindtext[1]
 \subsubsection{Conservativity}
 \blindtext[1]
 \subsubsection{Continuity}
 \blindtext[1]
+\subsubsection{Explicitness}
+\citeauthor{AlvarezMelis.2018}
+\blindtext[1]
+\subsubsection{Stability}
+\citeauthor{AlvarezMelis.2018}
+\blindtext[1]
+\subsubsection{Diversity}
+\citeauthor{AlvarezMelis.2018}
+\blindtext[1]
+\subsubsection{Grounding}
+\citeauthor{AlvarezMelis.2018}
+\blindtext[1]
 \subsubsection{Implementation Invariance}
 \blindtext[1]
 \subsubsection{Selectivity/Fidelity}
-` Put another way, a method with high fidelity will assign high relevance to features that, when removed, greatly reduce the DNN’s output confidence in the class assignment, while assigning low relevance to features that do not greatly affect the confidence when removed. Fidelity cannot be established axiomatically, and so must be estimated using implementations of the explanation method with the DNN model and dataset under investigation.'\cite{Tomsett.2019} Also look up: \citeauthor{Bach.2015, AlvarezMelis.2018}.
+`Put another way, a method with high fidelity will assign high relevance to features that, when removed, greatly reduce the DNN’s output confidence in the class assignment, while assigning low relevance to features that do not greatly affect the confidence when removed. Fidelity cannot be established axiomatically, and so must be estimated using implementations of the explanation method with the DNN model and dataset under investigation.'\cite{Tomsett.2019} Also look up: \citeauthor{Bach.2015, AlvarezMelis.2018}.
+
+\subsection{Sanity Checks for Saliency Maps}
+\blindtext[1]
 
 \subsection{Metrics}
-Although the field of heatmapping has received growing attention over the past decade, only little work has gone into the development of metrics. This is an issue, because absence of ground truth makes the search for metrics a non-trivial task. Further, a lack of (reliable) metrics leads to flaws in the comparison of methods.
+Although the field of heatmapping has received growing attention over the past decade, only little work has gone into the development of metrics. This is an issue, because absence of ground truth makes the search for metrics a non-trivial task --- while the lack of (reliable) metrics leads to flaws in the comparison of methods.
 
-This subsection will provide a theoretical overview of commonly used metrics and their (known) issues.
+This subsection will provide a theoretical overview of commonly used metrics, \cref{metrics:aopc,metrics:faithfulness,metrics:roar}. Tools for verifying the reliability of metrics are given in~\fullref{metrics:sanity-checks}. A final overview and discussion are presented in~\fullref{metrics:discussion}
 
-\subsubsection{Sanity Checks for Metrics}
-Just as for heatmaps, a set of sanity checks were proposed for metrics~.\cite{Tomsett.2019}. According to \citeauthor{Tomsett.2019}, metrics should accomplish to
-\begin{itemize}
-    \item measure the inteded property
-    \item provide consistent results
-\end{itemize}
-
-
-
-\subsubsection{Area Over the Perturbation Curve} Proposed by~\citeauthor{WojciechSamek.2015}~\cite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[pp. 34ff.]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
+\subsubsection{Area Over the Perturbation Curve}\label{metrics:aopc} Proposed by~\citeauthor{WojciechSamek.2015}~\cite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[pp. 34ff.]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
 
 \paragraph{Disabling Input Variables}
 Disabling input variables comes with the risk of violating dataset statistics such as mean and variance. A sample-perturbation function that disables the region \(\symbfit{r}_k\) in the input-sample \(\symbfit{x}\) is formally introduced as \(g(\symbfit{x}, \symbfit{r}_k)\). \citeauthor{WojciechSamek.2015} propose to four sample-perturbation functions
@@ -57,16 +61,38 @@ where \(x^{(n)}_{\text{MoRF / LeRF}}, n \in [0, k]\) is the perturbed input-samp
 \paragraph{Area Over the Perturbation Curve}
 The \gls{aopc} is then defined as
 \[
-    \text{AOPC}_M = 
-    \dfrac{\left\langle \sum_{k=0}^{L} f(\symbfit{x}^{(0)}_{M}) - f(\symbfit{x}^{(k)}_{M}) \right\rangle}{L+1},
+    \text{AOPC}_M = \dfrac{\left< \sum_{k=0}^{L} f(\symbfit{x}^{(0)}_{M}) - f(\symbfit{x}^{(k)}_{M}) \right>}{L+1},
 \]
-where \(\left< \cdot \right>\) denotes the average over all images in the \mbox{data set} and \(M \in \{\text{MoRF}, \text{LeRF}\}\).
+where \(\left< \cdot \right>\) denotes the average over all input-samples\todo{define input-sample globally} in the \mbox{data set} and \(M \in \{\text{MoRF}, \text{LeRF}\}\). Informally, \gls{aopc} calculates the arithmetic mean of the average decrease in model-score\todo{define model-score globally. Model-score is more like model output, actually.} caused by disabling a range from \(0\) to \(L\) input variables\todo{define input variable globally}.
 
-\paragraph{Sanity Checks}
-In a recent work by people, \gls{aopc} was criticized.
+\subsubsection{Faithfulness}\label{metrics:faithfulness}
+For faithfulness~\cite{AlvarezMelis.2018, Tomsett.2019}, as opposed to~\nameref{metrics:aopc}, model-outputs are computed with only a \textit{single} input-variable\todo{define input-variable globally} disabled at a time. Faithfulness is computed by taking Pearson correlation between the drop in model-output (when disabling the input-variable) and the relevance assigned to the input-variable by the heatmapping-method. Formally, given a sample \(\symbfit{x}\) with \(\left|\symbfit{x}\right|=n\) input-variables, an input-variable \(i\in \symbfit{x}\), the sample \(\symbfit{x}_i\) where \(i\) is disabled, a drop in model-output \(\Delta_i\) and a relevance for the input-variable \(R_i\):
+\begin{align*}
+    \Delta_i = f(\symbfit{x}) - f(\symbfit{x}_i)\\
+    \text{Faithfulness}_{\symbfit{x}} = \frac{1}{n}*\rho(R_i, \Delta_i)
+\end{align*}
+gives the Faithfulness for a single image \(\symbfit{x}\). The Faithfulness over the full dataset is computed as
+\[
+    \text{Faithfulness} = \left<\rho(R, \Delta)\right>
+\]
+where, again, \(\left< \cdot \right>\) denotes the average over all input-samples in the \mbox{data set}
 
-\subsubsection{Faithfulness}
-\blindtext[1]
-\subsubsection{Remove And Retrain}
+
+\subsubsection{Remove And Retrain}\label{metrics:roar}
 \blindtext[3]
-\par
+
+\subsubsection{Sanity Checks for Metrics}\label{metrics:sanity-checks}
+Just as for heatmaps, sanity checks were proposed for metrics~.\cite{Tomsett.2019} For determining whether a metric \textit{measures the intended property} and \textit{provides consistent results}, \citeauthor{Tomsett.2019} build upon three psychometric reliability tests (notice that both~\ref{itm:inter-rater} and~\ref{itm:inter-method} assume a \textit{fixed} metric)
+\begin{description}
+    \item[\namedlabel{itm:inter-rater}{Inter-rater reliability}] measures if heatmapping-methods are ranked consistently over the set of all input-samples.
+    For calculation, \citeauthor{Tomsett.2019} refer to Krippendorff's \(\alpha\).
+    \begin{description}
+        \item[\(\alpha = 1\)] implies that a metric assigns the same ranking-order for the heatmapping-methods (i.e.\ if a heatmapping method is superior, it is consistently superior). 
+        \item[\(\alpha = 0\)] implies that a metric assigns a random score for each heatmapping-method. Therefore, the fidelity of a heatmapping method cannot be predicted using the observed metric.
+    \end{description} \todo{Read this again}
+    \item[\namedlabel{itm:inter-method}{Inter-method reliability}] measures the correlation of metric-scores for different heatmapping methods over the set of all input-samples. For calculation, \citeauthor{Tomsett.2019} refer to Spearman's \(\rho\). A large \(\rho\) implies high inter-method reliability.
+    \item[Internal consistency] measures if different metrics observe the same property (e.g.\ fidelity). For calculation, \citeauthor{Tomsett.2019} take the correlation (again, Spearman's \(\rho\)) of metric-scores from different metrics over the same heatmap.
+\end{description}
+
+\subsubsection{Discussion}\label{metrics:discussion}
+\blindtext[1]

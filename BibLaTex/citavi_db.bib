@@ -6,14 +6,6 @@
 }
 
 
-@book{I.Guyon.2017,
- year = {2017},
- title = {NIPS~2017: Advances in Neural Information Processing Systems 30},
- publisher = {{Curran Associates, Inc}},
- editor = {{I. Guyon} and {U. V. Luxburg} and {S. Bengio} and {H. Wallach} and {R. Fergus} and {S. Vishwanathan} and {R. Garnett}}
-}
-
-
 @book{JairEscalante.2018,
  year = {2018},
  title = {Explainable and Interpretable Models in Computer Vision and Machine Learning},
@@ -77,6 +69,22 @@
 }
 
 
+@article{Montavon.2018,
+ abstract = {This paper provides an entry point to the problem of interpreting a deep neural network model and explaining its predictions. It is based on a tutorial given at ICASSP 2017. As a tutorial paper, the set of methods covered here is not exhaustive, but sufficiently representative to discuss a number of questions in interpretability, technical challenges, and possible applications. The second part of the tutorial focuses on the recently proposed layer-wise relevance propagation (LRP) technique, for which we provide theory, recommendations, and tricks, to make most efficient use of it on real data.},
+ author = {Montavon, Grégoire and Samek, Wojciech and Müller, Klaus-Robert},
+ year = {2018},
+ title = {Methods for interpreting and understanding deep neural networks},
+ url = {http://www.sciencedirect.com/science/article/pii/S1051200417302385},
+ keywords = {Activation maximization;Deep neural networks;Layer-wise relevance propagation;Sensitivity analysis;Taylor decomposition},
+ pages = {1--15},
+ pagination = {page},
+ volume = {73},
+ issn = {1051-2004},
+ journal = {Digital Signal Processing},
+ doi = {10.1016/j.dsp.2017.10.011}
+}
+
+
 @inproceedings{Pang.2019,
  author = {Pang, Yanwei and Xie, Jin and Muhammed, Khan Haris and Rao, Anwer Muhammed and Fahad, Khan Shahbaz and Shao, Ling},
  title = {Mask-Guided Attention Network for Occluded Pedestrian Detection},
@@ -105,6 +113,14 @@
 }
 
 
+@book{I.Guyon.2017,
+ year = {2017},
+ title = {NIPS~2017: Advances in Neural Information Processing Systems 30},
+ publisher = {{Curran Associates, Inc}},
+ editor = {{I. Guyon} and {U. V. Luxburg} and {S. Bengio} and {H. Wallach} and {R. Fergus} and {S. Vishwanathan} and {R. Garnett}}
+}
+
+
 @inproceedings{Selvaraju.2017,
  author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
  title = {Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization},
@@ -117,16 +133,6 @@
 
 
 @article{Selvaraju.2019,
- abstract = {We propose a technique for producing ‘visual explanations’ for decisions from a large class of Convolutional Neural Network (CNN)-based models, making them more transparent and explainable. Our approach‐-Gradient-weighted Class Activation Mapping (Grad-CAM), uses the gradients of any target concept (say ‘dog’ in a classification network or a sequence of words in captioning network) flowing into the final convolutional layer to produce a coarse localization map highlighting the important regions in the image for predicting the concept. Unlike previous approaches, Grad-CAM is applicable to a wide variety of CNN model-families: (1) CNNs with fully-connected layers (e.g.VGG), (2) CNNs used for structured outputs (e.g.captioning), (3) CNNs used in tasks with multi-modal inputs (e.g.visual question answering) or reinforcement learning, all without architectural changes or re-training. We combine Grad-CAM with existing fine-grained visualizations to create a high-resolution class-discriminative visualization, Guided Grad-CAM, and apply it to image classification, image captioning, and visual question answering (VQA) models, including ResNet-based architectures. In the context of image classification models, our visualizations (a) lend insights into failure modes of these models (showing that seemingly unreasonable predictions have reasonable explanations), (b) outperform previous methods on the ILSVRC-15 weakly-supervised localization task, (c) are robust to adversarial perturbations, (d) are more faithful to the underlying model, and (e) help achieve model generalization by identifying dataset bias. For image captioning and VQA, our visualizations show that even non-attention based models learn to localize discriminative regions of input image. We devise a way to identify important neurons through Grad-CAM and combine it with neuron names (Bau et al. in Computer vision and pattern recognition, 2017) to provide textual explanations for model decisions. Finally, we design and conduct human studies to measure if Grad-CAM explanations help users establish appropriate trust in predictions from deep networks and show that Grad-CAM helps untrained users successfully discern a ‘stronger’ deep network from a ‘weaker’ one even when both make identical predictions. Our code is available at https://github.com/ramprs/grad-cam/, along with a demo on CloudCV (Agrawal et al., in: Mobile cloud visual media computing, pp 265‐290. Springer, 2015) (http://gradcam.cloudcv.org) and a video at http://youtu.be/COjUB9Izk6E.},
- author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
- year = {2019},
- title = {Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization},
- issn = {1573-1405},
- journal = {International Journal of Computer Vision}
-}
-
-
-@article{Selvaraju.2019b,
  abstract = {We propose a technique for producing ‘visual explanations’ for decisions from a large class of Convolutional Neural Network (CNN)-based models, making them more transparent and explainable. Our approach‐-Gradient-weighted Class Activation Mapping (Grad-CAM), uses the gradients of any target concept (say ‘dog’ in a classification network or a sequence of words in captioning network) flowing into the final convolutional layer to produce a coarse localization map highlighting the important regions in the image for predicting the concept. Unlike previous approaches, Grad-CAM is applicable to a wide variety of CNN model-families: (1) CNNs with fully-connected layers (e.g.VGG), (2) CNNs used for structured outputs (e.g.captioning), (3) CNNs used in tasks with multi-modal inputs (e.g.visual question answering) or reinforcement learning, all without architectural changes or re-training. We combine Grad-CAM with existing fine-grained visualizations to create a high-resolution class-discriminative visualization, Guided Grad-CAM, and apply it to image classification, image captioning, and visual question answering (VQA) models, including ResNet-based architectures. In the context of image classification models, our visualizations (a) lend insights into failure modes of these models (showing that seemingly unreasonable predictions have reasonable explanations), (b) outperform previous methods on the ILSVRC-15 weakly-supervised localization task, (c) are robust to adversarial perturbations, (d) are more faithful to the underlying model, and (e) help achieve model generalization by identifying dataset bias. For image captioning and VQA, our visualizations show that even non-attention based models learn to localize discriminative regions of input image. We devise a way to identify important neurons through Grad-CAM and combine it with neuron names (Bau et al. in Computer vision and pattern recognition, 2017) to provide textual explanations for model decisions. Finally, we design and conduct human studies to measure if Grad-CAM explanations help users establish appropriate trust in predictions from deep networks and show that Grad-CAM helps untrained users successfully discern a ‘stronger’ deep network from a ‘weaker’ one even when both make identical predictions. Our code is available at https://github.com/ramprs/grad-cam/, along with a demo on CloudCV (Agrawal et al., in: Mobile cloud visual media computing, pp 265‐290. Springer, 2015) (http://gradcam.cloudcv.org) and a video at http://youtu.be/COjUB9Izk6E.},
  author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
  year = {2019},
@@ -172,7 +178,7 @@
  publisher = {PMLR},
  series = {Proceedings of Machine Learning Research},
  editor = {{Doina Precup} and {Yee Whye Teh}},
- booktitle = {Proceedings of the 34th International Conference on Machine Learning},
+ booktitle = {ICML 2017},
  year = {2017},
  address = {International Convention Centre, Sydney, Australia}
 }
@@ -186,6 +192,23 @@
 }
 
 
+@inproceedings{Wang.2019,
+ abstract = {The gradient of a deep neural network (DNN) w.r.t. the input provides information that can be used to explain the output prediction in terms of the input features and has been widely studied to assist in interpreting DNNs. In a linear model (i.e., g(x) = wx + b), the gradient corresponds to the weights w. Such a model can reasonably locally-linearly approximate a smooth nonlinear DNN, and hence the weights of this local model are the gradient. The bias b, however, is usually overlooked in attribution methods. In this paper, we observe that since the bias in a DNN also has a non-negligible contribution to the correctness of predictions, it can also play a significant role in understanding DNN behavior. We propose a backpropagation-type algorithm “bias back-propagation (BBp)” that starts at the output layer and iteratively attributes the bias of each layer to its input nodes as well as combining the resulting bias term of the previous layer. Together with the backpropagation of the gradient generating w, we can fully recover the locally linear model g(x) = wx + b. In experiments, we show that BBp can generate complementary and highly interpretable explanations.},
+ author = {Wang, Shengjie and Zhou, Tianyi and Bilmes, Jeff},
+ title = {Bias Also Matters: Bias Attribution for Deep Neural Network Explanation},
+ url = {http://proceedings.mlr.press/v97/wang19p.html},
+ pages = {6659--6667},
+ bookpagination = {page},
+ volume = {97},
+ publisher = {PMLR},
+ series = {Proceedings of Machine Learning Research},
+ editor = {Chaudhuri, Kamalika and Salakhutdinov, Ruslan},
+ booktitle = {ICML 2019},
+ year = {2019},
+ address = {Long Beach, California, USA}
+}
+
+
 @article{WojciechSamek.2015,
  author = {{Wojciech Samek} and {Alexander Binder} and {Grégoire Montavon} and {Sebastian Lapuschkin} and {Klaus-Robert Müller}},
  year = {2015},
@@ -195,6 +218,16 @@
  volume = {28},
  journal = {IEEE Transactions on Neural Networks and Learning Systems},
  file = {Samek, Binder et al 2015 - Evaluating the visualization of what a Deep Neural Network as learned:Z\:\\Citavi\\Survey - Visual Approaches Towards Interpretability Of Neural Networks\\Citavi Attachments\\Samek, Binder et al 2015 - Evaluating the visualization of what a Deep Neural Network as learned.pdf:pdf}
+}
+
+
+@article{Selvaraju.2019b,
+ abstract = {We propose a technique for producing ‘visual explanations’ for decisions from a large class of Convolutional Neural Network (CNN)-based models, making them more transparent and explainable. Our approach‐-Gradient-weighted Class Activation Mapping (Grad-CAM), uses the gradients of any target concept (say ‘dog’ in a classification network or a sequence of words in captioning network) flowing into the final convolutional layer to produce a coarse localization map highlighting the important regions in the image for predicting the concept. Unlike previous approaches, Grad-CAM is applicable to a wide variety of CNN model-families: (1) CNNs with fully-connected layers (e.g.VGG), (2) CNNs used for structured outputs (e.g.captioning), (3) CNNs used in tasks with multi-modal inputs (e.g.visual question answering) or reinforcement learning, all without architectural changes or re-training. We combine Grad-CAM with existing fine-grained visualizations to create a high-resolution class-discriminative visualization, Guided Grad-CAM, and apply it to image classification, image captioning, and visual question answering (VQA) models, including ResNet-based architectures. In the context of image classification models, our visualizations (a) lend insights into failure modes of these models (showing that seemingly unreasonable predictions have reasonable explanations), (b) outperform previous methods on the ILSVRC-15 weakly-supervised localization task, (c) are robust to adversarial perturbations, (d) are more faithful to the underlying model, and (e) help achieve model generalization by identifying dataset bias. For image captioning and VQA, our visualizations show that even non-attention based models learn to localize discriminative regions of input image. We devise a way to identify important neurons through Grad-CAM and combine it with neuron names (Bau et al. in Computer vision and pattern recognition, 2017) to provide textual explanations for model decisions. Finally, we design and conduct human studies to measure if Grad-CAM explanations help users establish appropriate trust in predictions from deep networks and show that Grad-CAM helps untrained users successfully discern a ‘stronger’ deep network from a ‘weaker’ one even when both make identical predictions. Our code is available at https://github.com/ramprs/grad-cam/, along with a demo on CloudCV (Agrawal et al., in: Mobile cloud visual media computing, pp 265‐290. Springer, 2015) (http://gradcam.cloudcv.org) and a video at http://youtu.be/COjUB9Izk6E.},
+ author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
+ year = {2019},
+ title = {Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization},
+ issn = {1573-1405},
+ journal = {International Journal of Computer Vision}
 }
 
 
@@ -221,18 +254,9 @@
 
 @proceedings{DoinaPrecup.2017,
  year = {2017},
- title = {Proceedings of the 34th International Conference on Machine Learning},
- address = {International Convention Centre, Sydney, Australia},
- publisher = {PMLR},
- series = {Proceedings of Machine Learning Research},
- editor = {{Doina Precup} and {Yee Whye Teh}}
-}
-
-
-@proceedings{DoinaPrecup.2017b,
- year = {2017},
  title = {ICML 2017: Proceedings of the 34th International Conference on Machine Learning},
  url = {http://proceedings.mlr.press/v70/},
+ address = {International Convention Centre, Sydney, Australia},
  volume = {70},
  publisher = {PMLR},
  series = {Proceedings of Machine Learning Research},
@@ -302,21 +326,6 @@
 }
 
 
-@inproceedings{Zeiler.2014,
- abstract = {Large Convolutional Network models have recently demonstrated impressive classification performance on the ImageNet benchmark. However there is no clear understanding of why they perform so well, or how they might be improved. In this paper we address both issues. We introduce a novel visualization technique that gives insight into the function of intermediate feature layers and the operation of the classifier. We also perform an ablation study to discover the performance contribution from different model layers. This enables us to find model architectures that outperform Krizhevsky \etal on the ImageNet classification benchmark. We show our ImageNet model generalizes well to other datasets: when the softmax classifier is retrained, it convincingly beats the current state-of-the-art results on Caltech-101 and Caltech-256 datasets.},
- author = {Zeiler, Matthew D. and Fergus, Rob},
- title = {Visualizing and Understanding Convolutional Networks},
- publisher = {Springer},
- isbn = {978-3-319-10590-1},
- series = {Lecture notes in computer science},
- editor = {Fleet, David and Pajdla, Tomas and Schiele, Bernt and Tuytelaars, Tinne},
- booktitle = {ECCV 2014: Proceedings, Part I.},
- year = {2014},
- address = {Cham},
- file = {Zeiler and Fergus 2014 - Visualizing and Understanding Convolutional Networks:Z\:\\Citavi\\Survey - Visual Approaches Towards Interpretability Of Neural Networks\\Citavi Attachments\\Zeiler and Fergus 2014 - Visualizing and Understanding Convolutional Networks.pdf:pdf}
-}
-
-
 @inproceedings{Adebayo.2018,
  author = {Adebayo, Julius and Gilmer, Justin and Muelly, Michael and Goodfellow, Ian and Hardt, Moritz and Kim, Been},
  title = {Sanity Checks for Saliency Maps},
@@ -328,6 +337,20 @@
  year = {2018},
  address = {USA},
  file = {Adebayo, Gilmer et al 2018 - Sanity Checks for Saliency Maps:Z\:\\Citavi\\Survey - Visual Approaches Towards Interpretability Of Neural Networks\\Citavi Attachments\\Adebayo, Gilmer et al 2018 - Sanity Checks for Saliency Maps.pdf:pdf}
+}
+
+
+@inproceedings{AlvarezMelis.2018,
+ author = {Alvarez-Melis, David and Jaakkola, Tommi S.},
+ title = {Towards Robust Interpretability with Self-explaining Neural Networks},
+ url = {http://dl.acm.org/citation.cfm?id=3327757.3327875},
+ pages = {7786--7795},
+ bookpagination = {page},
+ publisher = {{Curran Associates Inc}},
+ series = {NIPS’18},
+ booktitle = {NIPS 2018},
+ year = {2018},
+ address = {USA}
 }
 
 
@@ -356,11 +379,13 @@
  title = {Learning Important Features Through Propagating Activation Differences},
  pages = {3145--3153},
  bookpagination = {page},
+ volume = {70},
  publisher = {PMLR},
  series = {Proceedings of Machine Learning Research},
  editor = {{Doina Precup} and {Yee Whye Teh}},
  booktitle = {ICML 2017},
  year = {2017},
+ address = {International Convention Centre, Sydney, Australia},
  file = {Shrikumar, Greenside et al 2017 - Learning Important Features Through Propagating Activation Differences:Z\:\\Citavi\\Survey - Visual Approaches Towards Interpretability Of Neural Networks\\Citavi Attachments\\Shrikumar, Greenside et al 2017 - Learning Important Features Through Propagating Activation Differences.pdf:pdf}
 }
 
@@ -395,6 +420,16 @@
 }
 
 
+@proceedings{Chaudhuri.2019,
+ year = {2019},
+ title = {ICML 2019: Proceedings of the 36th International Conference on Machine Learning},
+ address = {Long Beach, California, USA},
+ publisher = {PMLR},
+ series = {Proceedings of Machine Learning Research},
+ editor = {Chaudhuri, Kamalika and Salakhutdinov, Ruslan}
+}
+
+
 @misc{Chen.20180614,
  author = {Chen, Jianbo and {Le Song} and Wainwright, Martin J. and Jordan, Michael I.},
  date = {2018},
@@ -418,17 +453,18 @@
 }
 
 
-@inproceedings{AlvarezMelis.2018,
- author = {Alvarez-Melis, David and Jaakkola, Tommi S.},
- title = {Towards Robust Interpretability with Self-explaining Neural Networks},
- url = {http://dl.acm.org/citation.cfm?id=3327757.3327875},
- pages = {7786--7795},
- bookpagination = {page},
- publisher = {{Curran Associates Inc}},
- series = {NIPS’18},
- booktitle = {NIPS 2018},
- year = {2018},
- address = {USA}
+@inproceedings{Zeiler.2014,
+ abstract = {Large Convolutional Network models have recently demonstrated impressive classification performance on the ImageNet benchmark. However there is no clear understanding of why they perform so well, or how they might be improved. In this paper we address both issues. We introduce a novel visualization technique that gives insight into the function of intermediate feature layers and the operation of the classifier. We also perform an ablation study to discover the performance contribution from different model layers. This enables us to find model architectures that outperform Krizhevsky \etal on the ImageNet classification benchmark. We show our ImageNet model generalizes well to other datasets: when the softmax classifier is retrained, it convincingly beats the current state-of-the-art results on Caltech-101 and Caltech-256 datasets.},
+ author = {Zeiler, Matthew D. and Fergus, Rob},
+ title = {Visualizing and Understanding Convolutional Networks},
+ publisher = {Springer},
+ isbn = {978-3-319-10590-1},
+ series = {Lecture notes in computer science},
+ editor = {Fleet, David and Pajdla, Tomas and Schiele, Bernt and Tuytelaars, Tinne},
+ booktitle = {ECCV 2014: Proceedings, Part I.},
+ year = {2014},
+ address = {Cham},
+ file = {Zeiler and Fergus 2014 - Visualizing and Understanding Convolutional Networks:Z\:\\Citavi\\Survey - Visual Approaches Towards Interpretability Of Neural Networks\\Citavi Attachments\\Zeiler and Fergus 2014 - Visualizing and Understanding Convolutional Networks.pdf:pdf}
 }
 
 
