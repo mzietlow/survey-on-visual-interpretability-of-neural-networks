@@ -3,10 +3,11 @@
         "Krippendorf's",
         "Spearman's",
         "currentlabel",
-        "explainability",
         "dataset",
+        "datasets",
+        "explainability",
         "heatmap",
         "heatmapping",
-        "perceptron",
+        "perceptron"
     ]
 }
