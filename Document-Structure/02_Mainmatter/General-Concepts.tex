@@ -30,8 +30,17 @@ Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable
 \subsubsection{Selectivity/Fidelity}
 `Put another way, a method with high fidelity will assign high relevance to features that, when removed, greatly reduce the DNN’s output confidence in the class assignment, while assigning low relevance to features that do not greatly affect the confidence when removed. Fidelity cannot be established axiomatically, and so must be estimated using implementations of the explanation method with the DNN model and dataset under investigation.'\cite{Tomsett.2019} Also look up: \citeauthor{Bach.2015, AlvarezMelis.2018}.
 
-\subsection{Sanity Checks for Saliency Maps}
-\blindtext[1]
+\subsection{Sanity Checks for Saliency Methods}
+Sanity checks are simple rules that evaluate whether a proposed method can possibly work. Two such sanity checks for saliency methods\todo{saliency map, heatmap, fucking decide globally.} have been proposed by \fcite{Adebayo.2018}.
+
+\begin{description}
+    \item[\namedlabel{itm:model-param-random}{Model Parameter Randomization}]
+     using mathematical concept-1\todo{look up mathematical concept-1}, the output of a saliency method for the trained model\todo{establish mathematical notation for that} should differ significantly from the output of the same saliency method for an untrained, randomly initialized model. Otherwise, the saliency method does not depend on model parameters and cannot be used to interpret the model.
+    \item[\namedlabel{itm:data-random}{Data Randomization}] given a dataset of labeled input-samples, a subsidiary dataset of randomly-labeled input-samples is built. Using mathematical concept-2\todo{look up mathematical concept-2}, the output of a saliency method for a model trained on the correctly-labeled dataset should differ significantly from the output of the same saliency method for a model trained on the randomly-labeled dataset. Otherwise, the saliency method does not rely on the latent concepts present in input-samples, i.e.\ that the model trained on correctly-labeled dataset has actually learned to distinguish between cancerous/non-cancerous input-samples while the model trained on a randomly-labeled dataset has overfit and memorized input-samples.
+\end{description}
+for details on similarity metrics for~\ref{itm:data-random} and~\ref{itm:model-param-random}, please refer to~\cite{Adebayo.2018}
+
+Herein discussed models will be classified accordingly in some-chapter. \todo{write that some-chapter\ldots}
 
 \subsection{Metrics}
 Although the field of heatmapping has received growing attention over the past decade, only little work has gone into the development of metrics. This is an issue, because absence of ground truth makes the search for metrics a non-trivial task --- while the lack of (reliable) metrics leads to flaws in the comparison of methods.
