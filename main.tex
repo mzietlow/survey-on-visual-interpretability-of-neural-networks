@@ -38,28 +38,6 @@
 \usepackage{nameref}
 \usepackage{enumitem}
 
-%%%%% Custom Commands %%%%%
-
-% Add labels to description-environment:
-\makeatletter
-\def\namedlabel#1#2{\begingroup
-    #2%
-    \def\@currentlabel{#2}%
-    \phantomsection\label{#1}\endgroup
-}
-\makeatother
-
-% ref with both chapter number & chapter name
-\newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}} 
-
-% cite the authors name and also the work; fcite stands for fullcite
-\newcommand*{\fcite}[1]{\citeauthor{#1}~\cite{#1}}
-
-
-%%%%% /Custom Commands %%%%%
-
-
-
 % Fonts
 \usepackage{fontspec}
 \usepackage{glossaries} % \gls{<golssary-entry>} muss vor unicode-math geladen werden
@@ -84,6 +62,33 @@
 \usepackage[shortcuts]{extdash} % \=/ for nonbreaking dash
 \usepackage{url}
 \usepackage{cleveref}
+\usepackage{xifthen}
+
+%%%%% Custom Commands %%%%%
+
+% Add labels to description-environment:
+\makeatletter
+\def\namedlabel#1#2{\begingroup
+    #2%
+    \def\@currentlabel{#2}%
+    \phantomsection\label{#1}\endgroup
+}
+\makeatother
+
+% ref with both chapter number & chapter name
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}} 
+
+% cite the authors name and also the work; fcite stands for fullcite
+\newcommand*{\fcite}[2][1]{%
+  \ifthenelse{\isempty{#2}}%
+    {\citeauthor{#1}~\cite{#1}}% here #1 is the author
+    {\citeauthor{#2}~\cite[#1]{#2}}% here #2 is the author, #1 is the page
+} % example \fcite[p.15 ff.]{WojciechSamek.2015}
+
+% refer to equation n as Eq (n) with a single hyperlink
+\newcommand*{\feqref}[1]{\hyperref[{#1}]{Eq~(\ref*{#1})}}
+
+%%%%% /Custom Commands %%%%%
 
 \author{Malte Zietlow, Anna-Lena Büßelmann}
 \makeglossaries{}
