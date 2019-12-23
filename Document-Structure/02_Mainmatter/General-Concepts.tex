@@ -8,6 +8,7 @@ For mathematical notation this work builds upon the shoulders of~\cite{Kinderman
 \blindtext[3]
 \subsection{General Concepts of Gradient-Based methods}
 \blindtext[1]
+\subsubsection{Pixel-wise Decomposition}\label{subsubsect:pixel-wise-decomp}
 One of the core assumptions in gradient-based methods is the decomposability of prediction \(f(x)\) into relevances \(R_i \in \mathbb R\), where \(x\) is an input-sample. 
 \begin{description}
     \item[\(R_i < 0\)] is interpreted as evidence against the prediction \(f(x)\)
@@ -15,9 +16,9 @@ One of the core assumptions in gradient-based methods is the decomposability of 
 \end{description}
 In the \gls{lrp}-framework, proposed by \fcite{Bach.2015}, each prediction is approximately the sum of relevances of its input-variables \(x_i\)
 \begin{equation}
-    f(x) \approx \sum_{i=1}^{x} R_i.\label{eq:1}
+    f(x) \approx \sum_{i=1}^{|x|} R_i.\label{eq:1}
 \end{equation}
-The rationale behind~\eqref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process of predictor \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
+The rationale behind Equation~\eqref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process of predictor \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
 
 \subsection{Axioms}
 Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
