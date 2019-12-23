@@ -3,12 +3,24 @@
 
 \subsection{Mathematical Notation}
 For mathematical notation this work builds upon the shoulders of~\cite{Kindermans.2018}
+\blindtext[1]
 \subsection{Types of Explanation}
 \blindtext[3]
+\subsection{General Concepts of Gradient-Based methods}
+\subsubsection{Pixel-wise Decomposition}
+One of the core assumptions in gradient-based methods is the decomposability of prediction \(f(x)\) into relevances \(R_i \in \mathbb R\), where \(x\) is an input-sample. 
+\begin{description}
+    \item[\(R_i < 0\)] is interpreted as evidence against the prediction \(f(x)\)
+    \item[\(R_i > 0\)] is interpreted as evidence for the prediction \(f(x)\)
+\end{description}
+In the \gls{lrp}-framework, proposed by \fcite{Bach.2015}, each prediction is approximately the sum of relevances of its input-variables \(x_i\)
+\begin{equation}
+    f(x) \approx \sum_{i=1}^{x} R_i.\label{eq:1}
+\end{equation}
+The rationale behind~\eqref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process of predictor \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
 
 \subsection{Axioms}
 Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
-
 \subsubsection{Conservativity}
 \blindtext[1]
 \subsubsection{Continuity}
@@ -99,6 +111,10 @@ For each input-sample, a heatmap \(\mathscr H\) is produced. Where again,
 
 \paragraph{Keep And Retrain}
 Similar to \gls{morf} and \gls{lerf}, \citeauthor{Hooker.2019} propose \gls{kar}. In \gls{kar}, input-variables are disabled in \gls{lerf} order.\todo{Maybe use lerf and morf globally, they are a good idea actually and also sound funny.}
+
+\subsubsection{Sensitivity-n}
+\citeauthor{Ancona.}\todo{There is Ancona and Acona. Merge them.}
+\blindtext[1]
 
 \subsubsection{Sanity Checks for Metrics}\label{metrics:sanity-checks}
 Just as for heatmaps, sanity checks were proposed for metrics~.\cite{Tomsett.2019} For determining whether a metric \textit{measures the intended property} and \textit{provides consistent results}, \citeauthor{Tomsett.2019} build upon three psychometric reliability tests (notice that both~\ref{itm:inter-rater} and~\ref{itm:inter-method} assume a \textit{fixed} metric)
