@@ -63,6 +63,7 @@
 \usepackage{url}
 \usepackage{cleveref}
 \usepackage{xifthen}
+\usepackage{xargs}
 
 %%%%% Custom Commands %%%%%
 
@@ -79,11 +80,18 @@
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}} 
 
 % cite the authors name and also the work; fcite stands for fullcite
-\newcommand*{\fcite}[2][1]{%
-  \ifthenelse{\isempty{#2}}%
-    {\citeauthor{#1}~\cite{#1}}% here #1 is the author
-    {\citeauthor{#2}~\cite[#1]{#2}}% here #2 is the author, #1 is the page
-} % example \fcite[p.15 ff.]{WojciechSamek.2015}
+% #2 is the author, #1 is the optional parameter, e.g. fcite[2]{ttt.} for p. 2
+\newcommandx{\fcite}[3][1=,2=]{
+  \ifthenelse{\isempty{#2}}
+    {\citeauthor{#3}~\cite[#1]{#3}}
+    {\citeauthor{#3}~\cite[#1][#2]{#3}}
+} 
+% example \fcite[see][15--20\psq]{WojciechSamek.2015} 
+% biblatex provides macros for sq. sqq. which are equal to f. ff.
+% please see: https://texwelt.de/fragen/14065/seitenzahlsequenz-mit-biblatex-kennzeichnen 
+% and also http://ctan.ebinger.cc/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf
+
+
 
 % refer to equation n as Eq (n) with a single hyperlink
 \newcommand*{\feqref}[1]{\hyperref[{#1}]{Eq~(\ref*{#1})}}
