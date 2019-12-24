@@ -1,2 +1,35 @@
-\section{Perturbation-Based Methods}
-\blindtext[3]
+\section{Meta Methods}
+Meta Methods are using other methods to calculate their results, e\.g\. they can use pre generated heatmaps as an input.
+
+\subsection{Network Dissection}
+This method was introduced in 2017 by bau et al and is only applicable on convolutional networks. Their methods is divided into three steps: 
+“
+\begin{enumerate}
+    \item  Identify a broad set of human-labeled visual concepts. 
+    \item Gather hidden variables’ response to known concepts.
+    \item Quantify alignment of hidden variable−concept pairs
+\end{enumerate}
+”
+A human interpretable concept is often displayed by a combination of multiple variables and not only one. Nonetheless the paper measures the alignment between a single unit and a single interpretable concept. 
+They did this, by finding pictures, that maximize the activation of a feature and then found the part of the picture, all of the pictures had in common.
+\includegraphics{NetworkDissection}
+Interestingly hey found, that lower layers of a CN interpret concepts like color or texture and higher layers more complex concepts like part or object, much like the human way of interpretation (\fcite{Bau.2017}).
+
+\subsection{Concept Activation Vectors}
+Concept Activation Vectors were published by Kim et al in 2018. It aims to improve heatmaps in the point, that is it is only applicable to one picture at a time. The problem with that is, that even if a picture is of the same object, different parts of the object can be highlighted in the heatmap. This leads to confusion and mistrust.
+\par
+Their method measures the activation of a layer l produced of certain inputs. They “then define a “concept activation vector” (or CAV) as the normal to a hyperplane separating examples without a concept and examples with a concept in the model’s activations” (\fcite[p.3]{Kim.2018}).
+\par
+A concept can be a special feature of a photo, e.g. a striped texture. So to compute such CAV, analysts needs a set of photos of striped objects and a set of random photos.
+“Then, a binary linear classifier can be trained to distinguish between the layer activations of the two sets: {fl(x) : x ∈ PC } and {fl(x) : x ∈ N}. This classifier v l C ∈ R m is a linear CAV for the concept C”. (p.3) Like this it can be found, which features exactly a NN learned.
+In the paper they used a maximization technique in addition to sort the photos. Like this, the  underlying concept of a CAV can be visualized (\fcite{Kim.2018}).
+
+\subsection{Spectral Relevance Analysis}
+The spectral relevance analysis (SpRAy) was first published in 2019 by Lapuschkin. It aims to combine multiple explanations into one. It applies spectral clustering to the heatmaps and identifies recurrent patterns. “The identified features may be truly meaningful representatives of the object class of interest, or they may be co-occurring features learned by the model but not intended to be part of the class, and ultimately of the model’s decision process. Since SpRAy can be efficiently applied to a whole large-scale dataset, it helps to obtain a more complete picture of the classifier behavior and reveal unexpected or ‘Clever Hans’ type decision making” (\fcite[p.8]{Lapuschkin.2019}).
+\par
+Spectral Relevance Analysis consists of four steps:
+The relevance maps for the dataset need to be calculated.
+Thereafter the relevance maps need to be resized to be in a uniform form.
+Spectral cluster analysis (SC) must be applied to the relevance maps. This groups classifier behaviors into clusters.
+Then interesting clusters can then be found via eigengap analysis.
+After that the results can be visualized (\fcite{Lapuschkin.2019}).
