@@ -13,12 +13,13 @@ One of the core assumptions in gradient-based methods is the decomposability of 
 \begin{description}
     \item[\(R_i < 0\)] is interpreted as evidence against the prediction \(f(x)\)
     \item[\(R_i > 0\)] is interpreted as evidence for the prediction \(f(x)\)
+    \item[\(R_i = 0\)] is a neutral relevance, the according input-variable \(x_i\) is usually called a `root-point' for predictor \(f\).
 \end{description}
 In the \gls{lrp}-framework, proposed by \fcite{Bach.2015}, each prediction is approximately the sum of relevances of its input-variables \(x_i\)
 \begin{equation}
     f(x) \approx \sum_{i=1}^{|x|} R_i.\label{eq:1}
 \end{equation}
-The rationale behind Equation~\eqref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process of predictor \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
+The rationale behind~\feqref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process for predictor \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
 
 \subsection{Axioms}
 Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
@@ -60,7 +61,7 @@ Although the field of heatmapping has received growing attention over the past d
 
 This subsection will provide a theoretical overview of commonly used metrics, \cref{metrics:aopc,metrics:faithfulness,metrics:roar}. Tools for verifying the reliability of metrics are given in~\fullref{metrics:sanity-checks}. A final overview and discussion are presented in~\fullref{metrics:discussion}
 
-\subsubsection{Area Over the Perturbation Curve}\label{metrics:aopc} Proposed by~\citeauthor{WojciechSamek.2015}~\cite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[pp. 34ff.]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
+\subsubsection{Area Over the Perturbation Curve}\label{metrics:aopc} Proposed by~\fcite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[pp. 34ff.]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
 
 \paragraph{Disabling Input Variables}
 Disabling input variables comes with the risk of violating dataset statistics such as mean and variance. A sample-perturbation function that disables the region \(\symbfit{r}_k\) in the input-sample \(\symbfit{x}\) is formally introduced as \(g(\symbfit{x}, \symbfit{r}_k)\). \citeauthor{WojciechSamek.2015} propose to four sample-perturbation functions
