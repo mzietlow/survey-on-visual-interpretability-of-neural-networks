@@ -23,12 +23,19 @@ The CEM approach aims to identify the minimal amount of pixels to justify a clas
 “For example, when justifying the classification of a handwritten image of a 3, the method will identify a subset of non-zero or on-pixels within the 3 which by themselves are sufficient for the image to be predicted as a 3 even if all other pixels are turned off (that is, made zero to match background). Moreover, it will identify a minimal set of off-pixels which if turned on (viz. a horizontal line of pixels at the right top making the 3 look like a 5) will alter the classification.” (\fcite{Luss.} p.2)
 This example is visualized above \fcite{Dhurandhar.2018}.\todo{insert picture}
 For the algorithm \fcite{Dhurandhar.2018} found formulas to calculate such PPs and PNs.
-\includegraphics{CEM_Numbers}
-
+\begin{figure*}
+    \center
+    \includegraphics[width=\textwidth/2]{CEM_Numbers}
+    \caption{CEM Numbers}
+\end{figure*}\todo{add caption}
 They applied this method to a dataset of handwritten numbers, like seen in the example\todo{insert picture}. They trained a CNN, which finally reached an accuracy of 99.4\% and then used CEM to visualize these decisions. In addition they used a a convolutional autoencoder (CAE) for some results, which improves this method even further. In figure n the output of CEM is visualized. 
 \par
 To be able to better see the improvements made by this method, LIME and LRP were applied to the same dataset. It can clearly be seen, that CEM´s results are better understandable for humans.
-\includegraphics{CEM_Celebs.png}
+\begin{figure*}
+    \center
+    \includegraphics[width=\textwidth]{CEM_Celebs.png}
+    \caption{CEM Celebs}
+\end{figure*}\todo{add caption}
 
 \fcite{Luss.2019} improved this method and made it applicable to RGB images.
 They found, that “For colored images, PPs offer better direction as to what is important for the classification versus too much direction by LIME (shows too many features) or too little direction by Grad-CAM (only focuses on smiles), while for gray-scale images, neither PPs, LIME, or Grad-CAM are particularly informative versus PNs. “ \fcite[p.7]{Luss.2019}
@@ -75,7 +82,11 @@ The length of the dark grey bar corresponds to the influence of the feature acco
 Zintgraf et al. (2017) refined this approach even further. They found, that removing one feature at a time is not enough, because a complex neural network is robust to just one unknown feature, like a pixel in an image. Therefore multiple features should be removed at a time so see an impact. In the paper by Zintgraf et al. they are using images to demonstrate this. They choose patches of connected pixels as their feature sets. The patches have a size of k x k pixel or for an rgb image k x k x 3. Because they use a sliding window style the patches overlap, which makes it possible, to define the individual pixels impact. Depending on the size of the window different results can be found 
 \par
 It is visible, that a small window does not show the intended results. On the other hand a large window leads to a blurry and not clearly understandable image as well. Therefore observing the results and varying the window size is necessary (\fcite{Zintgraf.2017}). 
-\includegraphics{PredictionDifferenceAnalysis}
+\begin{figure*}
+    \center
+    \includegraphics[width=\textwidth]{PredictionDifferenceAnalysis}
+    \caption{PredictionDifferenceAnalysis}
+\end{figure*}\todo{add caption}
 
 \subsection{Anchors}
 Anchors were introduced in 2018 by Ribeiro et al. and can also be referred as if-then rules. They are rules, that “sufficiently “anchors” the prediction locally – such that changes to the rest of the feature values of the instance do not matter” (\fcite[p.1]{Ribeiro.2018}). This means, the values of other features are not important if an anchor exists, because the prediction will always be the same. In their paper they apply these anchors to tabular, text and image datasets.
@@ -88,7 +99,11 @@ If A(x) = 1 and “ A is a sufficient condition for f(x) with high probability�
  \par
 An example of anchors for texts can be seen in the picture above. What exactly LIME is, is explained in section LIME. There you can see possible Anchors: e.g. for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than τ. If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
 The paper presents two different ways for finding those anchors: a bottom-up construction or a Beam-Search.
-\includegraphics{Anchor}
+\begin{figure*}
+    \center
+    \includegraphics[width=\textwidth/2]{Anchor}
+    \caption{Anchor}
+\end{figure*}\todo{add caption}
 \par
 With the bottom up search they try to find a rule with the highest estimated precision, and like this the shortest anchor. This anchors tend have a high coverage and are easily understandable for humans. 
 The downside of this approach is, that this greedy strategy is only able, to find one anchor at a time and the coverage is just negligibly.
@@ -103,5 +118,9 @@ There are multiple frameworks that can generate such pictures. A well-known meth
 “To start, an input image is presented to the convnet and features computed throughout the layers. To examine a given convnet activation, we set all other activations in the layer to zero and pass the feature maps as input to the attached deconvnet layer. Then we successively (i) unpool, (ii) rectify and (iii) filter to reconstruct the activity in the layer beneath that gave rise to the chosen activation. This is then repeated until input pixel space is reached.” (\fcite[p.820]{Zeiler.2014}).
 \par
 Nguyen et al. achieved this in 2016 by starting from a random image and calculating via backpropagation how each pixel influences the output (Nguyen). Multiple studies have shown, that this can lead to unrealistic images. To improve in this point a general concept of a natural image must be learned by the NN. Therefore Nguyen et al. are using image generator networks. They conclude, that they can understand better, which features a NN has learned exactly with this method (\fcite{Nguyen.2016}).
-\includegraphics{ActivationMaximization}
+\begin{figure*}
+    \center
+    \includegraphics{ActivationMaximization}
+    \caption{ActivationMaximization}
+\end{figure*}\todo{add caption}
 
