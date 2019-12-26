@@ -81,10 +81,10 @@
 
 % cite the authors name and also the work; fcite stands for fullcite
 % #2 is the author, #1 is the optional parameter, e.g. fcite[2]{ttt.} for p. 2
-\newcommandx{\fcite}[3][1=,2=]{
-  \ifthenelse{\isempty{#2}}
-    {\citeauthor{#3}~\cite[#1]{#3}}
-    {\citeauthor{#3}~\cite[#1][#2]{#3}}
+\newcommandx{\fcite}[3][1=,2=]{%
+  \ifthenelse{\isempty{#2}}%
+    {\citeauthor{#3}~\cite[#1]{#3}}%
+    {\citeauthor{#3}~\cite[#1][#2]{#3}}%
 } 
 % example \fcite[see][15--20\psq]{WojciechSamek.2015} 
 % biblatex provides macros for sq. sqq. which are equal to f. ff.
