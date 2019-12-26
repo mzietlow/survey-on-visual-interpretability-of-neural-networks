@@ -1,0 +1,11 @@
+\subsection{Sanity Checks for Saliency Methods}
+Sanity checks are simple rules that evaluate whether a proposed method can possibly work. Two such sanity checks for saliency methods\todo{saliency map, heatmap, fucking decide globally.} have been proposed by \fcite{Adebayo.2018}.
+
+\begin{description}
+    \item[\namedlabel{itm:model-param-random}{Model Parameter Randomization}]
+     using mathematical concept-1\todo{look up mathematical concept-1}, the output of a saliency method for the trained model\todo{establish mathematical notation for that} should differ significantly from the output of the same saliency method for an untrained, randomly initialized model. Otherwise, the saliency method does not depend on model parameters and cannot be used to interpret the model.
+    \item[\namedlabel{itm:data-random}{Data Randomization}] given a dataset of labeled input-samples, a subsidiary dataset of randomly-labeled input-samples is built. Using mathematical concept-2\todo{look up mathematical concept-2}, the output of a saliency method for a model trained on the correctly-labeled dataset should differ significantly from the output of the same saliency method for a model trained on the randomly-labeled dataset. Otherwise, the saliency method does not rely on the latent concepts present in input-samples, i.e.\ that the model trained on correctly-labeled dataset has actually learned to distinguish between cancerous/non-cancerous input-samples while the model trained on a randomly-labeled dataset has overfit and memorized input-samples.
+\end{description}
+for details on similarity metrics for~\ref{itm:data-random} and~\ref{itm:model-param-random}, please refer to~\cite{Adebayo.2018}
+
+Herein discussed models will be classified accordingly in some-chapter. \todo{write that some-chapter\ldots}
