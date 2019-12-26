@@ -61,15 +61,15 @@ Similar to \gls{morf} and \gls{lerf}, \citeauthor{Hooker.2019} propose \gls{kar}
 \blindtext[1]
 
 \subsubsection{Sanity Checks for Metrics}\label{metrics:sanity-checks}
-Just as for heatmaps, sanity checks were proposed for metrics~.\cite{Tomsett.2019} For determining whether a metric \textit{measures the intended property} and \textit{provides consistent results}, \citeauthor{Tomsett.2019} build upon three psychometric reliability tests (notice that both~\ref{itm:inter-rater} and~\ref{itm:inter-method} assume a \textit{fixed} metric)
+Just as for heatmaps, sanity checks were proposed for metrics~\cite{Tomsett.2019}. For determining whether a metric \textit{measures the intended property} and \textit{provides consistent results}, \citeauthor{Tomsett.2019} build upon three psychometric reliability tests (notice that both~\ref{itm:inter-rater} and~\ref{itm:inter-method} assume a \textit{fixed} metric)
 \begin{description}
-    \item[\namedlabel{itm:inter-rater}{Inter-rater reliability}] measures if heatmapping-methods are ranked consistently over the set of all input-samples.
+    \item[\namedlabel{itm:inter-rater}{Inter-rater reliability}{}] measures if heatmapping-methods are ranked consistently over the set of all input-samples.
     For calculation, \citeauthor{Tomsett.2019} refer to Krippendorff's \(\alpha\).
     \begin{description}
         \item[\(\alpha = 1\)] implies that a metric assigns the same ranking-order for the heatmapping-methods (i.e.\ if a heatmapping method is superior, it is consistently superior). 
         \item[\(\alpha = 0\)] implies that a metric assigns a random score for each heatmapping-method. Therefore, the fidelity of a heatmapping method cannot be predicted using the observed metric.
     \end{description} \todo{Read this again}
-    \item[\namedlabel{itm:inter-method}{Inter-method reliability}] measures the correlation of metric-scores for different heatmapping methods over the set of all input-samples. For calculation, \citeauthor{Tomsett.2019} refer to Spearman's \(\rho\). A large \(\rho\) implies high inter-method reliability.
+    \item[\namedlabel{itm:inter-method}{Inter-method reliability}{}] measures the correlation of metric-scores for different heatmapping methods over the set of all input-samples. For calculation, \citeauthor{Tomsett.2019} refer to Spearman's \(\rho\). A large \(\rho\) implies high inter-method reliability.
     \item[Internal consistency] measures if different metrics observe the same property (e.g.\ fidelity). For calculation, \citeauthor{Tomsett.2019} take the correlation (again, Spearman's \(\rho\)) of metric-scores from different metrics over the same heatmap.
 \end{description}
 

@@ -69,11 +69,17 @@
 %%%%% Custom Commands %%%%%
 
 % Add labels to description-environment:
+% #1 is the label, #2 is the item-name, #3 is an optional name for \ref
+% Unfortunately, optional arguments won't work in the description-environment :(
 \makeatletter
-\def\namedlabel#1#2{\begingroup
+\newcommand*{\namedlabel}[3]{%
+  \begingroup%
     #2%
-    \def\@currentlabel{#2}%
-    \phantomsection\label{#1}\endgroup
+    \ifthenelse{\isempty{#3}}%
+      {\def\@currentlabel{#2}}%
+      {\def\@currentlabel{#3}}%
+    \phantomsection\label{#1}%
+  \endgroup%
 }
 \makeatother
 
