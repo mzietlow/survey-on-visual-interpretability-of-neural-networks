@@ -34,18 +34,18 @@
 In summary, \gls{lrp} requires a conservation of relevance between layers (\cref{enum:gls-2}), the relevance of a neuron to be both the sum of its incoming weighted \glspl{message} (\cref{enum:gls-4,enum:gls-6}) and the sum of its outgoing weighted \glspl{message} (\cref{enum:gls-5,enum:gls-6}).
 
 \subsection{Taylor-Decomposition}
-As an approximation to \gls{lrp}, Taylor-Decomposition was proposed in~\cite{Bach.2015}. It directly defines relevances \(R_{h}^{(1)}\) at the (slightly modified) input-sample \(x'\) and therefore avoids the process of decomposing relevances for each layer. Instead, relevance \(R_{h}^{(1)}\) is defined by developing a first order Taylor series of the input \(x\) around a root point \(x_0\) of \(f(x)\), such that \(f(x_0) = 0\). Informally, Taylor-Decomposition attributes relevance by weighting the difference of the image and the root point (\(x-x_0\)) with the partial derivative of the predictor with respect to the input \(x\). Formally
+As an approximation to \gls{lrp}, Taylor-Decomposition was proposed in~\cite{Bach.2015}. It directly defines relevances \(R_{h}^{(1)}\) at the (slightly modified) input-sample \(x'\) and therefore avoids the process of decomposing relevances for each layer. Instead, relevance \(R_{h}^{(1)}\) is defined by developing a first order Taylor series of the input \(x\) around a root point \(x_0\), such that \(f(x_0) = 0\). Informally, Taylor-Decomposition attributes relevance by weighting the difference of the image and the root point (\(x-x_0\)) with the partial derivative of the predictor with respect to the input \(x\). Formally
 \begin{equation}
     R_{h}^{(1)} \approx (x-x_0)_{(h)} * \frac{\partial f}{\partial x_{(h)}}(x_0).
 \end{equation}
-Here, the \textit{slightly modified} input sample \(x'\), mentioned above, is \(x':=x-x_0\).
+Here, \(x'\) as mentioned above is \(x':=x-x_0\).
 \par
 Again, a set of constraints is formulated to find the root-point \(x_0\)
 \begin{enumerate}
     \item \(x_0\) must be a root point of \(f\), such that \(f(x_0)=0\)
-    \item \(x_0\) must be close to \(x\) under the Euclidean L2-norm.\label[const]{enum:taylor-closeness}
+    \item \(x_0\) must be in the neighborhood of \(x\) under some distance metric, e.g.\ the Euclidean L2-norm.\label[const]{enum:taylor-closeness}
 \end{enumerate}
-A major issue with Taylor-Decomposition is satisfying \cref{enum:taylor-closeness}. \fcite{Bach.2015} do not provide a solution for sparsely populated data-domains, e.g.\ datasets of natural images.
+A major issue with Taylor-Decomposition is satisfying \cref{enum:taylor-closeness}. \fcite{Bach.2015} do not provide a solution for sparsely populated data-domains, e.g.\ datasets of natural images. Yet, when the root point is ill-defined, researcheres\todo{find the source} were able to show that Taylor-Decomposition produces bad results.
 
 \subsubsection{Deep-Taylor-Decomposition}
 \blindtext[1]
