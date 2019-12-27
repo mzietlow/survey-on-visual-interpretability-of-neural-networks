@@ -25,11 +25,11 @@
     \end{equation}\label[const]{enum:gls-5}
     \item each \gls{message} \(R_{i\leftarrow j}^{(l,l+1)}\) is the product of the relevance of neuron \(j\), \(R_j^{(l+1)}\), weighted by the \textit{relative strength} of the path \(P_{i\rightarrow j}\), formally
     \begin{equation}
-        R_{i\leftarrow j}^{(l,l+1)} = R_{j}^{(l+1)} \frac{a_i w_{ij}}{\sum_h a_h w_{hj} + b_j},\label{eq:weighted-message}
+        R_{i\leftarrow j}^{(l,l+1)} = R_{j}^{(l+1)} \frac{a_i w_{ij}}{\sum_{h\in (l)} a_h w_{hj} + b_j},\label{eq:weighted-message}
     \end{equation}
     where \(a_i\) is the output of neuron \(i\) (precisely the output of its activation-function), \(w_ij\) are the weights that connect neurons \(i \text{ and } j\) and \(b_j\) is the bias for layer \(j\). 
     \par
-    \Cref{eq:weighted-message} shows the simplest case of a \textit{weighting}-term. Different approaches for stabilizing the propagation, such as \(\alpha\text{-}\beta\)-\gls{lrp} and \(\epsilon\)-\gls{lrp}, are further discussed in~\cite[20-22]{Bach.2015}.\label[const]{enum:gls-6}
+    \Cref{eq:weighted-message} shows the simplest case of a \textit{weighting}-term. Different approaches for stabilizing the propagation, such as \(\alpha\beta\)-\gls{lrp} and \(\epsilon\)-\gls{lrp}, are further discussed in~\cite[20-22]{Bach.2015}.\label[const]{enum:gls-6}
 \end{enumerate}
 In summary, \gls{lrp} requires a conservation of relevance between layers (\cref{enum:gls-2}), the relevance of a neuron to be both the sum of its incoming weighted \glspl{message} (\cref{enum:gls-4,enum:gls-6}) and the sum of its outgoing weighted \glspl{message} (\cref{enum:gls-5,enum:gls-6}).
 
@@ -45,7 +45,30 @@ Again, a set of constraints is formulated to find the root-point \(x_0\)
     \item \(x_0\) must be a root point of \(f\), such that \(f(x_0)=0\)
     \item \(x_0\) must be in the neighborhood of \(x\) under some distance metric, e.g.\ the Euclidean L2-norm.\label[const]{enum:taylor-closeness}
 \end{enumerate}
-A major issue with Taylor-Decomposition is satisfying \cref{enum:taylor-closeness}. \fcite{Bach.2015} do not provide a solution for sparsely populated data-domains, e.g.\ datasets of natural images. Yet, when the root point is ill-defined, researcheres\todo{find the source} were able to show that Taylor-Decomposition produces bad results.
+A major issue with Taylor-Decomposition is satisfying \cref{enum:taylor-closeness}. \fcite{Bach.2015} do not provide a solution for sparsely populated data-domains, e.g.\ datasets of natural images. Yet, when the root point is ill-defined, \fcite{Kindermans.2019} were able to show that Taylor-Decomposition produces bad results.
 
-\subsubsection{Deep-Taylor-Decomposition}
+\subsection{Deep-Taylor-Decomposition}
+Deep-Taylor-Decomposition as proposed by \fcite{Montavon.2017} tries to overcome the difficulties that the search for root-points according to \cref{enum:taylor-closeness} posed to simple Taylor-Decomposition. For this, they introduce axioms \ref{ax:positivity} and \ref{ax:consistency} which Deep-Taylor-Decomposition must satisfy. Also, they propose a method for finding root-points \(x_0(i):= x_i + t*v_i\), where \(v_i\) is called \textit{search direction}. \citeauthor{Montavon.2017} use this definition to define a set of weighting terms, similar to those in \gls{lrp} and Taylor-Decomposition. Formally, they introduce a generalization of the weighting parameter in \cref{eq:weighting-in-dtd}\cite[see][Supplementary Material]{Montavon.2017}
+\begin{equation}
+    R_{i\leftarrow j}^{(l,l+1)} = \sum_j \frac{v_i w_{ij}}{\sum_i v_i w_{ij}} R_j^{(l+1)}\label{eq:weighting-in-dtd}
+\end{equation}
+and then derive specific weighting parameters by defining \(v_i\).
+\begin{description}
+    \item[\(\symbfit{w^2}\)-Weighting] which is similar to \cref{eq:weighted-message} but does only rely on the weights \(w_{ij}\) that connect \(i \text{ and } j\). \(v_i\) is chosen to be \(v_i:=w_{ij}\).
+    \begin{equation}
+        R_{i\leftarrow j}^{(l,l+1)} = R_{j}^{(l+1)} \frac{w_{ij}^2}{\sum_{h\in (l)} w_{hj}^2}.\label{eq:w2-weighting-dtd}
+    \end{equation}
+    \(w^2\)-Weighting is used, when the input-domain is unrestricted, i.e.\ \(x\in \mathbb R^{|x|}\).
+    \item[\(\symbfit{z^+}\)-Weighting] is similar to the \(\alpha \beta\)-Rule of \gls{lrp}, with \(\beta=0, \alpha=1\). Here, \(v_i\) is the set of all \(x_i\) for which the correspoding \(w_{ij}\) is positive, formally \(w_{ij}^{+} = \left\{w_{ij} | w_{ij}\geq 0\right\}\) and \(v_i:=\left\{x_i|w_{ij}\in w_{ij}^{+}\right\}\). The weighting therefore is
+    \begin{align}
+        R_{i\leftarrow j}^{(l,l+1)} &= R_{j}^{(l+1)} \frac{x_i w_{ij}^{+}}{\sum_{h\in (l)} x_(h) w_{hj}^{+}}\\
+        R_{i\leftarrow j}^{(l,l+1)} &= R_{j}^{(l+1)} \frac{z{ij}^{+}}{\sum_{h\in (l)} z_{hj}^{+}},
+    \end{align}
+    with \(z_{ij}^{+}:= x_i w_{ij}^{+}\), from which the name \(z^{+}\)-Weighting is derived.
+    \(w^2\)-Weighting is used, when the input-domain is unrestricted, i.e.\ \(x\in \mathbb R^{|x|}\).
+    \item[\(\symbfit{z^{\mathscr B}}\)-Weighting] placeholder 
+\end{description}
+\par
+\blindtext[1]
+\paragraph{Relevance-Models}
 \blindtext[1]
