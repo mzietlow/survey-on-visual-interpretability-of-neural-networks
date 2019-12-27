@@ -11,11 +11,12 @@ This method was introduced in 2017 by \fcite{Bau.2017} and is only applicable on
 \end{enumerate}
 ” \cite[2]{Bau.2017}
 A human interpretable concept is often displayed by a combination of multiple variables and not only one. Nonetheless the paper measures the alignment between a single unit and a single interpretable concept. 
-They did this, by finding pictures, that maximize the activation of a feature and then found the part of the picture, all of the pictures had in common (figure 7).
+They did this, by finding pictures, that maximize the activation of a feature and then found the part of the picture, all of the pictures had in common (\cref{fig:NetworkDissection} figure 7).
 \begin{figure*}[h]
     \center
     \includegraphics[width=\textwidth]{NetworkDissection}
-    \caption{Network Dissection}
+    \caption{Network Dissection, \cite{Bau.2017}}
+    \label{fig:NetworkDissection}
 \end{figure*}
 
 Interestingly they found, that lower layers of a CN interpret concepts like color or texture and higher layers more complex concepts like part or object, much like the human way of interpretation \cite{Bau.2017}.
@@ -34,11 +35,15 @@ is a linear CAV for the concept” \cite[3]{Kim.2018}. Like this it can be found
 In the paper they used a maximization technique in addition to sort the photos. Like this, the  underlying concept of a CAV can be visualized \cite{Kim.2018}.
 
 \subsection{Spectral Relevance Analysis}
-The spectral relevance analysis (SpRAy) \todo{add to glossary} was first published in 2019 by Lapuschkin. It aims to combine multiple explanations into one. It applies spectral clustering to pre generated heatmaps and identifies recurrent patterns. “The identified features may be truly meaningful representatives of the object class of interest, or they may be co-occurring features learned by the model but not intended to be part of the class, and ultimately of the model’s decision process. Since SpRAy can be efficiently applied to a whole large-scale dataset, it helps to obtain a more complete picture of the classifier behavior and reveal unexpected or ‘Clever Hans’ type decision making” \cite[8]{Lapuschkin.2019}.
+The \gls{spray} was first published in 2019 by \fcite{Lapuschkin.2019}. It aims to combine multiple explanations into one. It applies spectral clustering to pre generated heatmaps and identifies recurrent patterns. 
 \par
-Spectral Relevance Analysis consists of four steps:
-The relevance maps for the dataset need to be calculated.
-Thereafter the relevance maps need to be resized to be in a uniform form.
-Spectral cluster analysis (SC) must be applied to the relevance maps. This groups classifier behaviors into clusters.
-Then interesting clusters can then be found via eigengap analysis.
+“The identified features may be truly meaningful representatives of the object class of interest, or they may be co-occurring features learned by the model but not intended to be part of the class, and ultimately of the model’s decision process. Since SpRAy can be efficiently applied to a whole large-scale dataset, it helps to obtain a more complete picture of the classifier behavior and reveal unexpected or ‘Clever Hans’ type decision making” \cite[8]{Lapuschkin.2019}.
+\par
+\gls{spray} consists of four steps:
+\begin{enumerate}
+    \item The relevance maps for the dataset need to be calculated.
+    \item Thereafter the relevance maps need to be resized to be in a uniform form.
+    \item Spectral cluster analysis must be applied to the relevance maps. This groups classifier behaviors into clusters.
+    \item Then interesting clusters can then be found via eigengap analysis.
+\end{enumerate}
 After that the results can be visualized \cite{Lapuschkin.2019}.
