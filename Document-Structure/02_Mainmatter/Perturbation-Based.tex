@@ -1,5 +1,5 @@
 \section{Perturbation-Based Methods}
-Perturbation based methods for Visualizing NNs are methods, which compute “the attribution of an input feature (or set of features) by removing, masking or altering them, and running a forward pass on the new input, measuring the difference with the original output” \cite[2]{Acona.2018}.
+Perturbation based methods for Visualizing NNs are methods, which compute “the attribution of an input feature (or set of features) by removing, masking or altering them, and running a forward pass on the new input, measuring the difference with the original output”~\cite[2]{Acona.2018}.
 These methods “allow a direct estimation of the marginal effect of a feature” (\cite[p.2]{Acona.2018}), but do not achieve the needed performance when it comes to a higher number of features.
 \par
 Because of this, there are many new approaches in this field.
@@ -9,24 +9,24 @@ Various methods are based on perturbation of input data. In this meta study the 
 \subsection{LIME}
 LIME is another Algorithm that aims to explain the predictions of a NN and is short for “Local Interpretable Model-agnostic Explanations”. It was first introduced by \fcite{Ribeiro.2016} and is freely accessible at https://github.com/marcotcr/lime.
 \par
-It is applicable to different types of data, like pictures and text and computes the most relevant features of this input. For a picture LIME would output the relevant parts of a picture, for a text the decisive words in some form of diagram. The explainers correspond with the actual explanation at 90 to 97\%. Multiple examples will be seen in this paper and compared to other methods \cite{Ribeiro.2016}.
+It is applicable to different types of data, like pictures and text and computes the most relevant features of this input. For a picture LIME would output the relevant parts of a picture, for a text the decisive words in some form of diagram. The explainers correspond with the actual explanation at 90 to 97\%. Multiple examples will be seen in this paper and compared to other methods~\cite{Ribeiro.2016}.
 
 \subsection{Occlusion Methods}
 Occlusion Methods, otherwise known as Input Masking or Representation Erasure, alter the input by concealing certain parts of the input data and measuring the difference in the output compared to the original output. 
 \par
-\fcite{Li.2016} use this method for word embeddings. They mask the Pre- or Suffix or other Dimensions of a word and calculate the difference in the output. Like this, the most important dimensions can be found. Interestingly erasure of certain words returns an negative importance score, this means, it improves the decision of the network \cite{Li.2016}.
+\fcite{Li.2016} use this method for word embeddings. They mask the Pre- or Suffix or other Dimensions of a word and calculate the difference in the output. Like this, the most important dimensions can be found. Interestingly erasure of certain words returns an negative importance score, this means, it improves the decision of the network~\cite{Li.2016}.
 
 \subsection{Contrastive Explanations Method CEM}
 The \glspl{cem} was first published by \fcite{Dhurandhar.2018} in 2018 in their paper “Explanations based on the Missing: Towards Contrastive Explanations with Pertinent Negatives”.
 The \gls{cem} approach aims to identify the minimal amount of pixels to justify a classification, called \glspl{pp}. On the other hand side it identifies the pixels as well, that need to be “turned off” in order to change the classification of the image. These pixels are called \glspl{pn}. Like this, the most important pixels can be found \fcite{Luss.}. 
 \par
-“For example, when justifying the classification of a handwritten image of a 3, the method will identify a subset of non-zero or on-pixels within the 3 which by themselves are sufficient for the image to be predicted as a 3 even if all other pixels are turned off (that is, made zero to match background). Moreover, it will identify a minimal set of off-pixels which if turned on (viz. a horizontal line of pixels at the right top making the 3 look like a 5) will alter the classification” \cite[2]{Luss.}.
-This example is visualized in \cref{fig:CEM_Numbers} \cite{Dhurandhar.2018}.
+“For example, when justifying the classification of a handwritten image of a 3, the method will identify a subset of non-zero or on-pixels within the 3 which by themselves are sufficient for the image to be predicted as a 3 even if all other pixels are turned off (that is, made zero to match background). Moreover, it will identify a minimal set of off-pixels which if turned on (viz. a horizontal line of pixels at the right top making the 3 look like a 5) will alter the classification”~\cite[2]{Luss.}.
+This example is visualized in \cref{fig:CEM_Numbers}~\cite{Dhurandhar.2018}.
 For the algorithm \fcite{Dhurandhar.2018} found formulas to calculate such PPs and PNs.
 \begin{figure*}[h]
     \center
     \includegraphics[width=\textwidth/2]{CEM_Numbers}
-    \caption{CEM, LRP and LIME applied to a number dataset, \cite{Dhurandhar.2018}}
+    \caption{CEM, LRP and LIME applied to a number dataset,~\cite{Dhurandhar.2018}}
     \label{fig:CEM_Numbers}
 \end{figure*}
 They applied this method to a dataset of handwritten numbers, like seen in the example \cref{fig:CEM_Numbers}. They trained a NN, which finally reached an accuracy of 99.4\% and then used \gls{cem} to visualize these decisions. 
@@ -37,17 +37,16 @@ To be able to better see the improvements made by this method, LIME and LRP were
 \begin{figure*}[h]
     \center
     \includegraphics[width=\textwidth]{CEM_Celebs.png}
-    \caption{CEM and LIME applied to a celebrity dataset, \cite{Luss.}}
-    \label{CEM_Celebs}
+    \caption{CEM and LIME applied to a celebrity dataset~\cite{Luss.}}\label{fig:CEM_Celebs}
 \end{figure*}
 
 \fcite{Luss.} improved this method in 2019 and made it applicable to RGB images.
 They found, that “For colored images, PPs offer better direction as to what is important for the classification versus too much direction of LIME (shows too many features) or too little direction by Grad-CAM (only focuses on smiles), while for gray-scale images, neither PPs, LIME, or Grad-CAM are particularly informative versus PNs.” \fcite[p.7]{Luss.}
 
 \subsection{Prediction Difference Analysis}
-The Prediction Difference Analysis was developed 2008 by \fcite{RobnikSikonja.2008} and published in the paper “Explaining Classifications for Individual Instances”. They address 3 different types of explanation: instance explanation, model explanation and domain explanation. Instance explanation aims to explain a “classification of a single instance at model level” \cite[2]{RobnikSikonja.2008}. Model explanation measures the averages of explanations over multiple instances and can provide a more general explanation of features and the importance of features values.
+The Prediction Difference Analysis was developed 2008 by \fcite{RobnikSikonja.2008} and published in the paper “Explaining Classifications for Individual Instances”. They address 3 different types of explanation: instance explanation, model explanation and domain explanation. Instance explanation aims to explain a “classification of a single instance at model level”~\cite[2]{RobnikSikonja.2008}. Model explanation measures the averages of explanations over multiple instances and can provide a more general explanation of features and the importance of features values.
 \par
-Domain explanation is still unknown, but “if the accuracy of the model is high, it should be quite similar to the model explanation.” \cite[2]{RobnikSikonja.2008} Firstly they define a model as a function \(f : x \rightarrow f(x)\) which maps instances to numerical values. To calculate the prediction Difference some definitions must be made: An instance x has a value for each attribute \(A_{i}\). To now calculate the effect of Ai on x they observe the models prediction for  \(f(x \backslash A_{i})\). 
+Domain explanation is still unknown, but “if the accuracy of the model is high, it should be quite similar to the model explanation.”~\cite[2]{RobnikSikonja.2008} Firstly they define a model as a function \(f : x \rightarrow f(x)\) which maps instances to numerical values. To calculate the prediction Difference some definitions must be made: An instance x has a value for each attribute \(A_{i}\). To now calculate the effect of Ai on x they observe the models prediction for  \(f(x \backslash A_{i})\). 
 \par
 If there is just a minor difference the influence of \(A_{i}\) is small, if there is a major difference the influence is large. The defined formula is: 
 \(predDiff_{i} (x) = f(x)− f(x \backslash A_{i})\).
@@ -103,7 +102,7 @@ It should be kept in mind, that different instances predict different values, so
 \begin{figure*}[h]
     \center
     \includegraphics{PDA-Diagram}
-    \caption{Prediction Difference Analysis on Titanic-dataset, \cite{RobnikSikonja.2008}}
+    \caption{Prediction Difference Analysis on Titanic-datase~ \cite{RobnikSikonja.2008}}
     \label{fig:PDA-titanic}
 \end{figure*}
 The results of the prediction difference can then be visualized in a diagram. This special method is called explainVis. \Cref{fig:PDA-titanic} is based on the Titanic dataset and predicts the probability of survival of the person based on travelling class, age and gender.
@@ -113,50 +112,50 @@ The information difference is shown on the horizontal axis. Weight of evidence a
  which was calculated by the model is reported on the top.
 The length of the dark grey bar corresponds to the influence of the feature according to the information difference. Positive influence is given on the right-hand side and negative on the left-hand side. The light grey bar represents the influence across all instances for the corresponding attribute value. This shows the overall trend for the feature.
 \par
-\fcite{Zintgraf.2017} refined this approach even further. They found, that removing one feature at a time is not enough, because a complex neural network is robust to just one unknown feature, like a pixel in an image. Therefore multiple features should be removed at a time so see an impact. In \cite{Zintgraf.2017} they are using images to demonstrate this. They choose patches of connected pixels as their feature sets. The patches have a size of k x k pixel or for an rgb image k x k x 3. Because they use a sliding window style the patches overlap, which makes it possible, to define the individual pixels impact. Depending on the size of the window different results can be found 
+\fcite{Zintgraf.2017} refined this approach even further. They found, that removing one feature at a time is not enough, because a complex neural network is robust to just one unknown feature, like a pixel in an image. Therefore multiple features should be removed at a time so see an impact. I~ \cite{Zintgraf.2017} they are using images to demonstrate this. They choose patches of connected pixels as their feature sets. The patches have a size of k x k pixel or for an rgb image k x k x 3. Because they use a sliding window style the patches overlap, which makes it possible, to define the individual pixels impact. Depending on the size of the window different results can be found 
 \par
 It is visible, that a small window does not show the intended results. On the other hand a large window leads to a blurry and not clearly understandable image as well. Therefore observing the results and varying the window size is necessary .like it can be seen in \cref{fig:PDA} (\cite{Zintgraf.2017}). 
 \begin{figure*}[h]
     \center
     \includegraphics[width=\textwidth]{PredictionDifferenceAnalysis}
-    \caption{Prediction Difference Analysis with different window sizes, \cite{Zintgraf.2017}}
+    \caption{Prediction Difference Analysis with different window size~ \cite{Zintgraf.2017}}
     \label{fig:PDA}
 \end{figure*}
 
 \subsection{Anchors}
-Anchors were introduced in 2018 by \fcite{Ribeiro.2018} and can also be referred as if-then rules. They are rules, that “sufficiently “anchors” the prediction locally – such that changes to the rest of the feature values of the instance do not matter” \cite[1]{Ribeiro.2018}. This means, the values of other features are not important if an anchor exists, because the prediction will always be the same. In their paper they apply these anchors to tabular, text and image datasets.
+Anchors were introduced in 2018 by \fcite{Ribeiro.2018} and can also be referred as if-then rules. They are rules, that “sufficiently “anchors” the prediction locally – such that changes to the rest of the feature values of the instance do not matter”~\cite[1]{Ribeiro.2018}. This means, the values of other features are not important if an anchor exists, because the prediction will always be the same. In their paper they apply these anchors to tabular, text and image datasets.
 \par
 Like in the prediction difference analyses the model is defined as  
 \(f(x) \rightarrow y\). 
 An instance x ist perturbed by a “perturbation distribution” \(D_{x}\) (from now on D). The perturbations D should be in an interpretable form. A is a set of rules, which is applicable on x. \(A(x)\) returns true (1), if all feature predicates are true for instance x.
 If 
 \(A(x) = 1\)
- and “A is a sufficient condition for \(f(x)\) with high probability” \cite[2]{Ribeiro.2018} (bigger than \(\tau\)), then A is an anchor. Formally this can be described with 
+ and “A is a sufficient condition for \(f(x)\) with high probability”~\cite[2]{Ribeiro.2018} (bigger than \(\tau\)), then A is an anchor. Formally this can be described with 
 \par
-\(E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ τ, A(x) = 1\)
+\(E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ \tau, A(x) = 1\)
  \par
-An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. What LIME is, is explained in section “LIME”. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than τ. If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
+An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. What LIME is, is explained in section “LIME”. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than \(\tau\). If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
 The paper presents two different ways for finding those anchors: a bottom-up construction or a Beam-Search.
 \begin{figure*}[h]
     \center
     \includegraphics[width=\textwidth/2]{Anchor}
-    \caption{possible Anchors for textual data, \cite{Ribeiro.2018}}
+    \caption{possible Anchors for textual data~\cite{Ribeiro.2018}}
     \label{fig:Anchor}
 \end{figure*}
 \par
 With the bottom up search they try to find a rule with the highest estimated precision, and like this the shortest anchor. This anchors tend have a high coverage and are easily understandable for humans. 
 The downside of this approach is, that this greedy strategy is only able, to find one anchor at a time and the coverage is just negligibly.
-The beam search aims “to identify amongst many possible anchors the one that has the highest coverage” \cite[5]{Ribeiro.2018}. This is done similar to the greedy approach. First all candidate rules are computed, then the best rules are selected.
+The beam search aims “to identify amongst many possible anchors the one that has the highest coverage”~\cite[5]{Ribeiro.2018}. This is done similar to the greedy approach. First all candidate rules are computed, then the best rules are selected.
 
 \subsection{Activation Maximization}
 Activation Maximization aims to find an input, which maximizes the output score for a certain class. It was first published in a technical report by \fcite{Erhan.2009} in 2009. They restricted themselves to find the image of the dataset they had, that maximizes the feature.
 \par
-\fcite{Le.2012} refined this approach in 2012 and not only found the input images with the highest stimuli, but were able to compute an own picture (picture) \cite{Le.2012}.
+\fcite{Le.2012} refined this approach in 2012 and not only found the input images with the highest stimuli, but were able to compute an own picture (picture)~\cite{Le.2012}.
 \par
-There are multiple frameworks that can generate such pictures. A well-known method was developed by Zeiler and Fergus in 2014 called DeConvNet \cite{Zeiler.2014}. They mapped features to pixels, instead of the other way around:
-“To start, an input image is presented to the convnet and features computed throughout the layers. To examine a given convnet activation, we set all other activations in the layer to zero and pass the feature maps as input to the attached deconvnet layer. Then we successively (i) unpool, (ii) rectify and (iii) filter to reconstruct the activity in the layer beneath that gave rise to the chosen activation. This is then repeated until input pixel space is reached.” \cite[820]{Zeiler.2014}.
+There are multiple frameworks that can generate such pictures. A well-known method was developed by Zeiler and Fergus in 2014 called DeConvNe~ \cite{Zeiler.2014}. They mapped features to pixels, instead of the other way around:
+“To start, an input image is presented to the convnet and features computed throughout the layers. To examine a given convnet activation, we set all other activations in the layer to zero and pass the feature maps as input to the attached deconvnet layer. Then we successively (i) unpool, (ii) rectify and (iii) filter to reconstruct the activity in the layer beneath that gave rise to the chosen activation. This is then repeated until input pixel space is reached.”~\cite[820]{Zeiler.2014}.
 \par
-\fcite{Nguyen.2016} achieved this in 2016 by starting from a random image and calculating via backpropagation how each pixel influences the output. Multiple studies have shown, that this can lead to unrealistic images. To improve in this point a general concept of a natural image must be learned by the NN. Therefore Nguyen et al. are using image generator networks. They conclude, that they can understand better, which features a NN has learned exactly with this method \cite{Nguyen.2016}. 
+\fcite{Nguyen.2016} achieved this in 2016 by starting from a random image and calculating via backpropagation how each pixel influences the output. Multiple studies have shown, that this can lead to unrealistic images. To improve in this point a general concept of a natural image must be learned by the NN. Therefore Nguyen et al. are using image generator networks. They conclude, that they can understand better, which features a NN has learned exactly with this method~\cite{Nguyen.2016}. 
 \par
 In \cref{fig:ActivationMax} the learned feature “face” is demonstrated. On the upper half the actual input images are shown, which activate the neuron the most. On the bottom the generated image is shown.
 \begin{figure*}[h]
@@ -164,6 +163,6 @@ In \cref{fig:ActivationMax} the learned feature “face” is demonstrated. On t
     \includegraphics[width=\textwidth/2]{ActivationMaximization}
     \caption{Inputs, that activate the “face-neuron” the most.
     Top: actual input images 
-    Bottom: via backpropagation found input, \cite{Le.2012}}
+    Bottom: via backpropagation found input~\cite{Le.2012}}
     \label{fig:ActivationMax}
 \end{figure*}
