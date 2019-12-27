@@ -51,36 +51,30 @@ Domain explanation is still unknown, but “if the accuracy of the model is high
 If there is just a minor difference the influence of \(A_{i}\) is small, if there is a major difference the influence is large. The defined formula is: 
 \(predDiff_{i} (x) = f(x)− f(x \backslash A_{i})\).
 \par
-The difference can be evaluated as 
-\par
-    information difference
-    \par
-        \begin{multline}
-              infDiff_{i}(y|x) = \\
-              \log_{2} p(y|x)−\log_{2} p(y|x \backslash A_{i})
-        \end{multline}
-        \par      
-    weight of evidence
-    \par
-        \begin{align}
-            \begin{split}
-                odds(z) ={}& \frac{p(z)}{p(\bar{z})} = \frac{p(z)}{(1 − p(z)}
-            \end{split}\\
-            \begin{split}
-                WE_{i}(y|x) ={}& \\
-                & \log_{2} (odds(y|x)) \\
-                & - \log_{2}(odds(y|x \backslash A_{i}))    
-            \end{split}
-        \end{align}
-        \par
-    difference of probabilities (output classes)
-    \par
-        \begin{multline}
-            probDiff_{i} (y|x) = \\
-        p(y|x)− p(y|x \backslash A_{i})
-        \end{multline}
-        
-\par
+The difference can be evaluated as either
+\begin{description}
+    \item[information difference] 
+    \begin{multline}
+        infDiff_{i}(y|x) = \\
+        \log_{2} p(y|x)−\log_{2} p(y|x \backslash A_{i})
+    \end{multline}
+    \item[weight of evidence] 
+    \begin{align}
+        \begin{split}
+            odds(z) ={}& \frac{p(z)}{p(\bar{z})} = \frac{p(z)}{(1 − p(z)}
+        \end{split}\\
+        \begin{split}
+            WE_{i}(y|x) ={}& \\
+            & \log_{2} (odds(y|x)) \\
+            & - \log_{2}(odds(y|x \backslash A_{i}))    
+        \end{split}
+    \end{align}
+    \item[difference of probabilities (output classes)]
+    \begin{multline}
+        probDiff_{i} (y|x) = \\
+    p(y|x)− p(y|x \backslash A_{i})
+    \end{multline}
+\end{description}
 The simplest way of computing \(p(y|x \backslash A_{i})\) is to replace the value of the attribute \(A_{i}\) with a special but unknown value, knowing, that this approach can lead to incorrectness if the modeling technique does not handle unknown values naturally (naive Bayesian classificator).
 To not depend on the model's implementation they chose an approach, that “simulates the lack of information about \(A_{i}\) with several predictions”\cite[p.4]{RobnikSikonja.2008}.
 \par
