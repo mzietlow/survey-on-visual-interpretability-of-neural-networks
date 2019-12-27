@@ -57,14 +57,16 @@ The difference can be evaluated as
         \end{multline}
           
     \item[weight of evidence ]
-        \begin{multline}
-            odds(z) =\frac{p(z)}{p(\bar{z})} = \frac{p(z)}{(1 − p(z)}
-        \end{multline}
-        \begin{multline}
-            WE_{i}(y|x) = \\
-            \log_{2} (odds(y|x)) − \\
-            \log_{2}(odds(y|x \backslash A_{i}))
-        \end{multline}
+        \begin{align}
+            \begin{split}
+                odds(z) ={}& \frac{p(z)}{p(\bar{z})} = \frac{p(z)}{(1 − p(z)}
+            \end{split}\\
+            \begin{split}
+                WE_{i}(y|x) ={}& \\
+                & \log_{2} (odds(y|x)) \\
+                & - \log_{2}(odds(y|x \backslash A_{i}))    
+            \end{split}
+        \end{align}
        
     \item[difference of probabilities of the output classes]
         \begin{multline}
