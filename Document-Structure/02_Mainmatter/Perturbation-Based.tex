@@ -131,11 +131,11 @@ Like in the prediction difference analyses the model is defined as
 An instance x ist perturbed by a “perturbation distribution” \(D_{x}\) (from now on D). The perturbations D should be in an interpretable form. A is a set of rules, which is applicable on x. \(A(x)\) returns true (1), if all feature predicates are true for instance x.
 If 
 \(A(x) = 1\)
- and “A is a sufficient condition for \(f(x)\) with high probability” \cite[2](Ribeiro.2018) (bigger than τ), then A is an anchor. Formally this can be described with 
+ and “A is a sufficient condition for \(f(x)\) with high probability” \cite[2]{Ribeiro.2018} (bigger than \(\tau\)), then A is an anchor. Formally this can be described with 
 \par
 \(E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ τ, A(x) = 1\)
  \par
-An example of anchors for texts can be seen in figure 5. What LIME is, is explained in section “LIME”. In \cref{fig:Anchor} you can see possible Anchors: e.g. for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than τ. If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
+An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. What LIME is, is explained in section “LIME”. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than τ. If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
 The paper presents two different ways for finding those anchors: a bottom-up construction or a Beam-Search.
 \begin{figure*}[h]
     \center
