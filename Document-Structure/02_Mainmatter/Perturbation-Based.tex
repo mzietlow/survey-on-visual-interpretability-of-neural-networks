@@ -79,18 +79,18 @@ The simplest way of computing \(p(y|x \backslash A_{i})\) is to replace the valu
 To not depend on the model's implementation they chose an approach, that “simulates the lack of information about \(A_{i}\) with several predictions”\cite[p.4]{RobnikSikonja.2008}.
 \par
 For  nominal attributes they replace the actual value \(A_{i} = a_{k}\) with all possible values for \(A_{i}\) and weight the prediction by the prior probability of the value: 
-\par
-        \begin{multline} 
-            p(y|x \backslash A_{i}) = \\ 
-            \sum_{s=1}^{m_{i}} p(A_{i} = a_{s} | x \backslash A_{i})p(y|x \leftarrow A_{i} = a_{s})
-        \end{multline}
-        \par
-    
-        \begin{multline}
-            p(y|x \backslash A_{i}) = \\ 
-            \sum_{s=1}^{m_{i}} p(A_{i} = a_{s})p(y|x \leftarrow A_{i} = a_{s})
-        \end{multline}
-        \par
+\begin{align}
+    \begin{split}
+        p(y|x \backslash A_{i}) ={}& \sum_{s=1}^{m_{i}} \biggl(\\ 
+        & p(A_{i} = a_{s} | x \backslash A_{i}) \\
+        & p(y|x \leftarrow A_{i} = a_{s})\biggr)
+    \end{split}\\
+    \begin{split}
+        p(y|x \backslash A_{i}) ={}& \sum_{s=1}^{m_{i}} \biggl(\\
+        & p(A_{i} = a_{s}) \\
+        & p(y|x \leftarrow A_{i} = a_{s}) \biggr)
+    \end{split}
+\end{align}
 
 It should be kept in mind, that different instances predict different values, so the explanation differs from instance to instance. Additionally the explanation is dependent on the model, so if the model is incorrect, the explanation will reflect that. The same goes for class dependency, different classes will lead to different explanations.
 \begin{figure*}[h]
