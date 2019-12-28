@@ -1,3 +1,16 @@
 \section{Taxonomy}
 Post-modelling explainability, attribution methods, perturbation, gradient, attribution, game-theory, methods that account for input-variance, proxy-models,activation-optimization, prototypes
+
+\subsection{Gradient-Based}
+\blindtext[1]
+\subsubsection{Functions, Signal and Attribution}\todo{this is more like, well, taxonomy, right?}
+In the past years, a large variety of gradient-based methods have been proposed (e.g.~\cite{Bach.2015,Zeiler.2014,Springenberg.2015,Kindermans.2018,Lundberg.2017,Gurumoorthy.2017,Simonyan.2014,DanielSmilkov.,Sundararajan.2017,Landecker.2013,Zhang.2018,Shrikumar.,Selvaraju.2017}). Broadly speaking, each method explains either \ref{itm:function}, \ref{itm:signal}, or \ref{itm:attribution}~\cite{Kindermans.2018}. Usually, this is done by \textit{projecting} the model-output \(f(x)\) back into the input-space \(\mathbb{R}^{|x|}\) of input-sample \(x\), with \(x\in \mathbb{R}^{|x|}\).
+\begin{description}
+    \item[\namedlabel{itm:function}{Function}{}] approximates the amount by which an infinitesimal change in each dimension (in the following: \textit{variable}) \(i\) in the input-sample \(x\) influences the model-output \(f(x)\). The strength and direction are then simply the partial derivative (respectively gradient) with respect to the input-variable \(x_i\), i.e.\ \(\frac{\partial f(x)}{\partial x_i}\). However, as function-approaches are usually considered to be only poorly informatory~\cite{Kindermans.2018} and are only used as a baseline, they will not be detailed in this work. For details, please refer to, for example, \fcite{Simonyan.2014}.
+    \item[\namedlabel{itm:signal}{Signal}{}] tries to reveal which input-variables caused the prediction~\cite{Kindermans.2018,Zeiler.2014} Signal-approaches are, to the best of our knowledge, constrained to \glspl{cnn}. Signal-approaches include for example DeConvNet~\cite{Zeiler.2014} and Guided Backpropagation~\cref{subsect:guided-backprop}, which have been shown to only approximate patterns that cause increased neuron-activity in higher layers~\cite{Kindermans.2019} (i.e.\ layers close to the output-layer). A more recent approach to this is PatternNet~\cref{subsect:patternnet-attribution}
+    \item[\namedlabel{itm:attribution}{Attribution}{}] tries to approximate the contribution of each input-value \(x_i\in x\). This is usually called either \textit{attribution} or \textit{relevance}. Approaches to this are SHAP~\cite{Lundberg.2017}, ProtoDash~\cite{Gurumoorthy.2017}, \gls{lrp} \cref{subsect:lrp}, \gls{td} \cref{subsect:td}, \gls{dtd} \cref{subsect:dtd}, and PatternAttribution \cref{subsect:patternnet-attribution}.
+\end{description}~\cite{Kindermans.2018,Kindermans.2019}
+
+\subsection{Perturbation-Based}
+\blindtext[1]
 \todo{write}
