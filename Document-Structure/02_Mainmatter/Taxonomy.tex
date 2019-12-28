@@ -2,8 +2,8 @@
 Post-modelling explainability, attribution methods, perturbation, gradient, attribution, game-theory, methods that account for input-variance, proxy-models,activation-optimization, prototypes
 
 \subsection{Gradient-Based}
-\blindtext[1]
-\subsubsection{Functions, Signal and Attribution}\todo{this is more like, well, taxonomy, right?}
+\blindtext[1]\todo{write}
+\subsubsection{Functions, Signal and Attribution}
 In the past years, a large variety of gradient-based methods have been proposed (e.g.~\cite{Bach.2015,Zeiler.2014,Springenberg.2015,Kindermans.2018,Lundberg.2017,Gurumoorthy.2017,Simonyan.2014,DanielSmilkov.,Sundararajan.2017,Landecker.2013,Zhang.2018,Shrikumar.,Selvaraju.2017}). Broadly speaking, each method explains either \ref{itm:function}, \ref{itm:signal}, or \ref{itm:attribution}~\cite{Kindermans.2018}. Usually, this is done by \textit{projecting} the model-output \(f(x)\) back into the input-space \(\mathbb{R}^{|x|}\) of input-sample \(x\), with \(x\in \mathbb{R}^{|x|}\).
 \begin{description}
     \item[\namedlabel{itm:function}{Function}{}] approximates the amount by which an infinitesimal change in each dimension (in the following: \textit{variable}) \(i\) in the input-sample \(x\) influences the model-output \(f(x)\). The strength and direction are then simply the partial derivative (respectively gradient) with respect to the input-variable \(x_i\), i.e.\ \(\frac{\partial f(x)}{\partial x_i}\). However, as function-approaches are usually considered to be only poorly informatory~\cite{Kindermans.2018} and are only used as a baseline, they will not be detailed in this work. For details, please refer to, for example, \fcite{Simonyan.2014}.

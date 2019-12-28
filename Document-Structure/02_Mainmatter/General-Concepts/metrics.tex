@@ -37,7 +37,7 @@ where \(\left< \cdot \right>\) denotes the average over all input-samples\todo{d
 For faithfulness~\cite{AlvarezMelis.2018, Tomsett.2019}, as opposed to~\nameref{metrics:aopc}, model-outputs are computed with only a \textit{single} input-variable\todo{define input-variable globally} disabled at a time. Faithfulness is computed by taking Pearson correlation between the drop in model-output (when disabling the input-variable) and the relevance assigned to the input-variable by the heatmapping-method. Formally, given a sample \(\symbfit{x}\) with \(\left|\symbfit{x}\right|=n\) input-variables, an input-variable \(i\in \symbfit{x}\), the sample \(\symbfit{x}_i\) where \(i\) is disabled, a drop in model-output \(\Delta_i\) and a relevance for the input-variable \(R_i\):
 \begin{align*}
     \Delta_i = f(\symbfit{x}) - f(\symbfit{x}_i)\\
-    \text{Faithfulness}_{\symbfit{x}} = \frac{1}{n}*\rho(R_i, \Delta_i)
+    \text{Faithfulness}_{\symbfit{x}} = \frac{1}{n} \rho(R_i, \Delta_i)
 \end{align*}
 \todo{bring together \(\mathscr O and R_i\)}
 gives the Faithfulness for a single image \(\symbfit{x}\). The Faithfulness over the full dataset is computed as

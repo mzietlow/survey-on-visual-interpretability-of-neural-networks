@@ -2,12 +2,14 @@
 Following the terminology of~\cite{Sundararajan.2017}, axioms describe desirable properties which a method should satisfy.
 
 \begin{description}
-    \item[\namedlabel{ax:conservativity}{Conservativity}{conservativity}] A heatmapping \(R^{(1)}\) is \textit{conservative} if the sum of assigned relevances in the pixel space corresponds to the total relevance detected by the model.\cite{Montavon.2017}\todo{this is copied 1:1. bad.} Formally, this is expressed by \cref{eq:1}.
-    \item[\namedlabel{ax:positivity}{Positivity}{positivity}] A heatmapping \(R^{(1)}\) is \textit{positive} if all values forming the heatmap are greater or equal to zero\cite{Montavon.2017}\todo{this is copied 1:1. bad.}, formally
+    \item[\namedlabel{ax:conservativity}{Conservativity}{conservativity}] A heatmapping \(R^{(1)}\) is \textit{conservative} if the sum of assigned relevances in the pixel space corresponds to the total relevance detected by the model.\cite{Montavon.2017} %\todo{this is copied 1:1. bad.}
+    Formally, this is expressed by \cref{eq:1}.
+    \item[\namedlabel{ax:positivity}{Positivity}{positivity}] A heatmapping \(R^{(1)}\) is \textit{positive} if all values forming the heatmap are greater or equal to zero\cite{Montavon.2017},%\todo{this is copied 1:1. bad.}
+    formally
     \[
         \forall i: R_i \geq 0.
     \]
-    \item[\namedlabel{ax:consistency}{Consistency}{consistency}] A heatmapping \(R^{(1)}\) is consistent, if it is following both \ref{ax:conservativity} and \ref{ax:positivity}.\cite{Montavon.2017}\todo{cite  Montavon.DeepTaylor this is copied 1:1. bad.}. By this, if there is no detection in the input-sample, the heatmap is also forced to be zero (instead of positive and negative values that cancel each other)\cite{Montavon.2017}.
+    \item[\namedlabel{ax:consistency}{Consistency}{consistency}] A heatmapping \(R^{(1)}\) is consistent, if it is following both \ref{ax:conservativity} and \ref{ax:positivity}.\cite{Montavon.2017} By this, if there is no detection in the input-sample, the heatmap is also forced to be zero (instead of positive and negative values that cancel each other)\cite{Montavon.2017}.
 \end{description}
 %
 %
