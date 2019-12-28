@@ -121,7 +121,7 @@ then A is an anchor. Formally this can be described with
 \[
     E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ \tau, A(x) = 1.
 \]
-An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. LIME is explained in \cref{subsect:lime}. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than \(\tau\). If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
+An example of anchors for texts can be seen in \cref{fig:Anchor}. LIME is explained in \cref{subsect:lime}. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than \(\tau\). If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
 The paper presents two different ways for finding those anchors: a bottom-up construction or a Beam-Search.
 \begin{figure}
     \center{}
