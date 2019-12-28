@@ -1,5 +1,5 @@
 \subsection{General Concepts of Gradient-Based methods}
-Most gradient-based methods use similar concepts as was shown for example by \fcite{Ancona.2018}\todo{Acona must be Ancona}. In this subsection, some general concepts will be introduced and referred to later, to ease notation and prevent accidental repetition.
+Most gradient-based methods use similar concepts as was shown for example by \fcite{Ancona.2018}. In this subsection, some general concepts will be introduced and referred to later, to ease notation and prevent accidental repetition.
 
 \subsubsection{Pixel-wise Decomposition}\label{subsubsect:pixel-wise-decomp}
 One of the core assumptions in gradient-based methods is the decomposability of prediction \(f(x)\) into relevances \(R_i \in \mathbb R\), where \(x\) is an input-sample. 
@@ -12,7 +12,7 @@ In the \gls{lrp}-framework, proposed by \fcite{Bach.2015}, each prediction is ap
 \begin{equation}
     f(x) \approx \sum_{i=1}^{|x|} R_i.\label{eq:1}
 \end{equation}
-The rationale behind~\cref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process for model \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-example as cancerous.
+The rationale behind~\cref{eq:1} is to allow human subjects an intuitive judgement of the decision-making process for model \(f\). Given a dataset of medical imagery, a human subject might verify that classifier \(f\) assigns high relevance to pixels of e.g.\ cancerous cells when classifying the input-sample as cancerous.
 
 \subsubsection{Message-Notation}\label{subsubsect:message-notation}
 Messages are a mathematical notation introduced by \fcite{Bach.2015} as a language for describing \textit{inverted} \glspl{nn}. Given two layers, \(l \text{ and } l+1\), and two neurons, \(i\in l \text{ and } j\in l+1\), the message \(R_{i\leftarrow j}^{(l, l+1)}\) is sent from neuron \(j\) to neuron \(i\) iff there exists a \gls{path} from neuron \(i\) to neuron \(j\). This relationship is visualized in \cref{fig:lrp-nn}.

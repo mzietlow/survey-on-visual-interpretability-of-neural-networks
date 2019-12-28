@@ -3,7 +3,7 @@ Although the field of heatmapping has received growing attention over the past d
 
 This subsection will provide a theoretical overview of commonly used metrics, \cref{metrics:aopc,metrics:faithfulness,metrics:roar}. Tools for verifying the reliability of metrics are given in~\fullref{metrics:sanity-checks}. A final overview and discussion are presented in~\fullref{metrics:discussion}
 
-\subsubsection{Area Over the Perturbation Curve}\label{metrics:aopc} Proposed by~\fcite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[34\psqq]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] \todo{consider factoring this out as a general concept} which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
+\subsubsection{Area Over the Perturbation Curve}\label{metrics:aopc} Proposed by~\fcite{WojciechSamek.2015}, \gls{aopc} is a generalization of the \textit{pixel flipping method} presented in~\cite[34\psqq]{Bach.2015}. \gls{aopc} measures the degradation of model-score for a certain input-sample, as input-variables are disabled in an iterative manner. Following either \gls{morf} or \gls{lerf} order. \gls{morf} and \gls{lerf} are extracted from the set of locations \[ \mathscr O = (\symbfit{r}_1, \symbfit{r}_2, \dots, \symbfit{r}_L), \] which is ordered by decreasing relevance, i.e.\ informally: \[(i > j) \implies \text{relevance}(\symbfit{r}_i) < \text{relevance}(\symbfit{r}_j) \] Here, a location \( \symbfit{r}_p, p \in [1, L] \) must not be a single input, but could represent any constant multidimensional array of inputs (e.g.\ a \( 9\times9 \)-grid of pixels, as seen in the original paper).
 
 \paragraph{Disabling Input Variables}
 Disabling input variables comes with the risk of violating dataset statistics such as mean and variance. A sample-perturbation function that disables the region \(\symbfit{r}_k\) in the input-sample \(\symbfit{x}\) is formally introduced as \(g(\symbfit{x}, \symbfit{r}_k)\). \citeauthor{WojciechSamek.2015} propose to four sample-perturbation functions
@@ -24,22 +24,21 @@ Note that the latter two, Gaussian filter and average value for the current inpu
     \symbfit{x}^{(0)}_{\text{LeRF}} &= \symbfit{x}\label{eq:lerf-base} \\
     \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{LeRF}} &= g(\symbfit{x}^{(k-1)}_{\text{LeRF}}, \symbfit{r}_{L+1-k})\label{eq:lerf-recursive}
 \end{align}
-where \(x^{(n)}_{\text{MoRF / LeRF}}, n \in [0, k]\) is the perturbed input-sample\todo{add \textit{input-sample} to glossary} at iteration \(n\) and by the respective order \gls{morf} / \gls{lerf}.
+where \(x^{(n)}_{\text{MoRF / LeRF}}, n \in [0, k]\) is the perturbed input-sample at iteration \(n\) and by the respective order \gls{morf} / \gls{lerf}.
 
 \paragraph{Area Over the Perturbation Curve}
 The \gls{aopc} is then defined as
 \[
     \text{AOPC}_M = \dfrac{\left< \sum_{k=0}^{L} f(\symbfit{x}^{(0)}_{M}) - f(\symbfit{x}^{(k)}_{M}) \right>}{L+1},
 \]
-where \(\left< \cdot \right>\) denotes the average over all input-samples\todo{define input-sample globally} in the \mbox{data set} and \(M \in \{\text{MoRF}, \text{LeRF}\}\). Informally, \gls{aopc} calculates the arithmetic mean of the average decrease in model-score\todo{define model-score globally. Model-score is more like model output, actually.} caused by disabling a range from \(0\) to \(L\) input variables\todo{define input variable globally}.
+where \(\left< \cdot \right>\) denotes the average over all input-samples in the \mbox{data set} and \(M \in \{\text{MoRF}, \text{LeRF}\}\). Informally, \gls{aopc} calculates the arithmetic mean of the average decrease in model-accuracy caused by disabling a range from \(0\) to \(L\) input variables.
 
 \subsubsection{Faithfulness}\label{metrics:faithfulness}
-For faithfulness~\cite{AlvarezMelis.2018, Tomsett.2019}, as opposed to~\nameref{metrics:aopc}, model-outputs are computed with only a \textit{single} input-variable\todo{define input-variable globally} disabled at a time. Faithfulness is computed by taking Pearson correlation between the drop in model-output (when disabling the input-variable) and the relevance assigned to the input-variable by the heatmapping-method. Formally, given a sample \(\symbfit{x}\) with \(\left|\symbfit{x}\right|=n\) input-variables, an input-variable \(i\in \symbfit{x}\), the sample \(\symbfit{x}_i\) where \(i\) is disabled, a drop in model-output \(\Delta_i\) and a relevance for the input-variable \(R_i\):
+For faithfulness~\cite{AlvarezMelis.2018, Tomsett.2019}, as opposed to~\nameref{metrics:aopc}, model-outputs are computed with only a \textit{single} input-variable disabled at a time. Faithfulness is computed by taking Pearson correlation between the drop in model-output (when disabling the input-variable) and the relevance assigned to the input-variable by the heatmapping-method. Formally, given a sample \(\symbfit{x}\) with \(\left|\symbfit{x}\right|=n\) input-variables, an input-variable \(i\in \symbfit{x}\), the sample \(\symbfit{x}_i\) where \(i\) is disabled, a drop in model-output \(\Delta_i\) and a relevance for the input-variable \(R_i\):
 \begin{align*}
     \Delta_i = f(\symbfit{x}) - f(\symbfit{x}_i)\\
     \text{Faithfulness}_{\symbfit{x}} = \frac{1}{n} \rho(R_i, \Delta_i)
 \end{align*}
-\todo{bring together \(\mathscr O and R_i\)}
 gives the Faithfulness for a single image \(\symbfit{x}\). The Faithfulness over the full dataset is computed as
 \[
     \text{Faithfulness} = \left<\rho(R, \Delta)\right>
@@ -51,10 +50,10 @@ where, again, \(\left< \cdot \right>\) denotes the average over all input-sample
 \citeauthor{Hooker.2019} point out that previously mentioned metrics, \cref{metrics:aopc,metrics:faithfulness}, introduce new data distributions by artificially disabling input-variables. Therefore, violating one of the key assumptions in machine learning: `training and prediction data should arise from the same distribution'~\cite{McGaughey.2016}. Further, \citeauthor{Hooker.2019} show that model-performance degrades significantly slower when retraining in comparison to simply disabing input-variables, as can be seen in~\cref{fig:hooker-retraining-vs-no-retraining}.
 \par
 For each input-sample, a heatmap \(\mathscr H\) is produced. Where again,
-\(\mathscr H\) is the set of feature importance estimates \( \{ e^{o}_{i} \}^N_{i=1} \)\todo{define this globally}. New training and test datasets are generated at different degradation levels \(t=\left[10, 30, 50, 70, 90 \right]\), with each \(t_i\) a percentage of input-variables per sample\todo{define the number of input-variables per sample globally}. To protect against random performance fluctuations, \citeauthor{Hooker.2019} retrain five models \(f_0^M(x_i), f_1^M(x_i),\ldots, f_4^M(x_i)\)\todo{Introduce notation for dataset and dataset degredation. Make clear that f(x) implies model \(f\) trained on x} for each metric \(M\) and each degradation method.
+\(\mathscr H\) is the set of feature importance estimates \( \{ e^{o}_{i} \}^N_{i=1} \). New training and test datasets are generated at different degradation levels \(t=\left[10, 30, 50, 70, 90 \right]\), with each \(t_i\) a percentage of input-variables per sample. To protect against random performance fluctuations, \citeauthor{Hooker.2019} retrain five models \(f_0^M(x_i), f_1^M(x_i),\ldots, f_4^M(x_i)\) for each metric \(M\) and each degradation method.
 
 \paragraph{Keep And Retrain}
-Similar to \gls{morf} and \gls{lerf}, \citeauthor{Hooker.2019} propose \gls{kar}. In \gls{kar}, input-variables are disabled in \gls{lerf} order.\todo{Maybe use lerf and morf globally, they are a good idea actually and also sound funny.}
+Similar to \gls{morf} and \gls{lerf}, \citeauthor{Hooker.2019} propose \gls{kar}. In \gls{kar}, input-variables are disabled in \gls{lerf} order.
 \begin{figure*}[ht]
     \center{}
     \includegraphics[width=\textwidth/2]{hooker-roar-retrain-nonretrain}
@@ -74,7 +73,7 @@ Just as for heatmaps, sanity checks were proposed for metrics~\cite{Tomsett.2019
     \begin{description}
         \item[\(\alpha = 1\)] implies that a metric assigns the same ranking-order for the heatmapping-methods (i.e.\ if a heatmapping method is superior, it is consistently superior). 
         \item[\(\alpha = 0\)] implies that a metric assigns a random score for each heatmapping-method. Therefore, the fidelity of a heatmapping method cannot be predicted using the observed metric.
-    \end{description} \todo{Read this again}
+    \end{description}
     \item[\namedlabel{itm:inter-method}{Inter-method reliability}{}] measures the correlation of metric-scores for different heatmapping methods over the set of all input-samples. For calculation, \citeauthor{Tomsett.2019} refer to Spearman's \(\rho\). A large \(\rho\) implies high inter-method reliability.
     \item[Internal consistency] measures if different metrics observe the same property (e.g.\ fidelity). For calculation, \citeauthor{Tomsett.2019} take the correlation (again, Spearman's \(\rho\)) of metric-scores from different metrics over the same heatmap.
 \end{description}
