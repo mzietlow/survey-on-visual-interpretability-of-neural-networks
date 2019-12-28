@@ -1,7 +1,7 @@
 \subsection{PatternNet and PatterAttribution}
 Using either a simple linear model~\cite{Kindermans.2018} or a constant shift in mean~\cite{Kindermans.2019}, \citeauthor{Kindermans.2018} were able to show the vulnerability of gradient methods (such as \gls{lrp}, \gls{td}, \gls{dtd}, Gradient x Input, and Integrated Gradients) to random changes in the input-sample (see \cref{fig:kindermans-unreliability}).
 \begin{figure*}
-    \centering
+    \center{}
     \includegraphics[width=\textwidth]{kindermans-catastrophic-attribution}
     \caption[Evaluation of attribution methods via a constant shift on MNIST]{Evaluation of attribution methods on two models (Network 1 and Network 2). Network 1 is trained on the well known MNIST-Dataset, while Network 2 is trained on a manipulated Version of MNIST with a constant shift (i.e. a hand-drawn image of a cat). Because the constant shift does not add any information to an image, a consistent attribution method should provide a similar explanation for both Network 1 and Network 2, when applied to the same input image with only the constant shift. However, Gradient x Input, Integrated Gradients and \gls{lrp} show a difference between Network 1 and Network 2. For further details, refer to~\cite{Kindermans.2019} from where this figure was adopted.}
     \label{fig:kindermans-unreliability}
@@ -37,13 +37,14 @@ In summary, \citeauthor{Kindermans.2018} propose
 \par
 For \textit{PatternAttribution}, \fcite{Kindermans.2018} then use the derived signal estimator as a weighting parameter in the \gls{dtd}-framework, which can be interpreted as an informed choice of root-point \(x_0\).
 For \textit{PatternNet}, only the signal itself is reconstructed.\todo{sHOw aN iMaGE oF THiS}
-\begin{figure*}[h]
-    \centering
+\begin{figure*}[ht]
+    \center{}
     \includegraphics[width=\textwidth]{kindermans-signal-estimators}
     \caption[Evaluation of Signal Estimators for VGG-16 on different layers.]{Evaluation of Signal Estimators for VGG-16 on different layers. Higher values are better. A random Signal Estimator is used as baseline. For details on the quality measure \(\rho\) refer to \cite{Kindermans.2018} from where this figure was adopted.}
     \label{fig:kindermans-signal-estimator-comparison}
 \end{figure*}
 \begin{figure}
+    \center{}
     \includegraphics[width=\textwidth/2]{kindermans-signal-estimators-visually}
     \caption[Visual example for the three signal estimators.]{Visual example for the three signal estimators. \(S_x\) is the identity estimator with \(S_x(x)=x\). Figure adopted from~\cite{Kindermans.2018}}\label{fig:kindermans-signal-estimator-visually}
 \end{figure}

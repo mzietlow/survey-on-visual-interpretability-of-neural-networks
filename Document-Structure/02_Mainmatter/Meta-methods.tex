@@ -5,17 +5,17 @@ Meta Methods are using other methods to calculate their results, e\.g\. they can
 This method was introduced in 2017 by \fcite{Bau.2017} and is only applicable on convolutional networks. Their methods is divided into three steps: 
 “
 \begin{enumerate}
-    \item  Identify a broad set of human-labeled visual concepts. 
+    \item Identify a broad set of human-labeled visual concepts. 
     \item Gather hidden variables’ response to known concepts.
-    \item Quantify alignment of hidden variable−concept pairs
+    \item Quantify alignment of hidden variable−concept pairs.
 \end{enumerate}
 ”~\cite[2]{Bau.2017}
 A human interpretable concept is often displayed by a combination of multiple variables and not only one. Nonetheless the paper measures the alignment between a single unit and a single interpretable concept. 
 They did this, by finding pictures, that maximize the activation of a feature and then found the part of the picture, all of the pictures had in common (\cref{fig:NetworkDissection}).
-\begin{figure*}[h]
-    \center
+\begin{figure*}[ht]
+    \center{}
     \includegraphics[width=\textwidth]{NetworkDissection}
-    \caption{Network Dissection - feature “lamp”,~\cite{Bau.2017}}\label{fig:NetworkDissection}
+    \caption{Network Dissection --- feature “lamp”,~\cite{Bau.2017}}\label{fig:NetworkDissection}
 \end{figure*}
 
 Interestingly they found, that lower layers of a CN interpret concepts like color or texture and higher layers more complex concepts like part or object, much like the human way of interpretation~\cite{Bau.2017}.

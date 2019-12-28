@@ -1,6 +1,6 @@
 \subsection{Layer-Wise Relevance Decomposition}
-\begin{figure*}[h]
-    \center
+\begin{figure*}[ht]
+    \center{}
     \includegraphics[]{lrp-fig2.PNG}
     \caption[Single-Layer Neural Network; prediction and propagation via \gls{lrp}]{\textbf{Left:} A neural network at prediction time. \textbf{Right:} a neural network at relevance-propagation time, adopted from \protect\cite{Bach.2015}}\label{fig:lrp-nn}
 \end{figure*}
@@ -70,8 +70,8 @@ and then derive specific weighting parameters by defining \(v_i\).
 \par
 In contrast to \gls{td}, \gls{dtd} defines not immediately the relevance at the input-sample \(R_{h}^{(1)}\), but only the relevance of \glspl{message}. It therefore incorporates ideas of both \gls{lrp} (relevance-propagation, even partial equality with the generalization of \ref{itm:z+weighting}) and \gls{td} (approximation of function value with respect to a root-point \(x_0\)). The relevance at the input-sample is recieved by a relevance model that then propagates the \glspl{message} from \(f(x)\) to \(R_{h}^{(1)}\).
 \paragraph{Relevance-Models}
-\begin{figure*}[h]
-    \center
+\begin{figure*}[ht]
+    \center{}
     \includegraphics[width=\textwidth]{dtd-flow}
     \caption[Deeper Neural Network; prediction and propagation via \gls{dtd}]{\textbf{Left:} A neural network at prediction time. \textbf{Right:} exemplary \gls{dtd} Relevance Model, adopted from \protect\cite{Montavon.2017}. Note, that in this work, usually \(R_h\) is used instead of \(R_p\).}\label{fig:dtd-nn}
 \end{figure*}
