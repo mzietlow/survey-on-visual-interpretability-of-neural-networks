@@ -13,20 +13,20 @@ To overcome this vulnerability of preexisting methods, \fcite{Kindermans.2018} i
         S_w = \frac{w_{ij}^2}{\sum_{h\in (l)} w_{hj}^2}.
     \end{equation}
     Although simple, \fcite{Kindermans.2018} show that \(S_w(x)\) neither holds theoretically, being unable to separate \(s\) and \(d\), nor empirically as shown in \cref{fig:kindermans-signal-estimator-comparison}.
-    \item[\namedlabel{itm:sa-signal-estimator}{The Linear Estimator \(\symbfit{S_a}\)}{\(\symbfit{S_a}\)}] is based on the assumption of a linear perceptron. Although this assumptions does not even hold for simple ReLU's, it provides a significant improvement over \ref{itm:sw-signal-estimator} as shown in \cref{fig:kindermans-signal-estimator-comparison}.
+    \item[\namedlabel{itm:sa-signal-estimator}{The Linear Estimator {}\(\symbfit{S_a}\)}{\(\symbfit{S_a}\)}] is based on the assumption of a linear perceptron. Although this assumptions does not even hold for simple ReLU's, it provides a significant improvement over \ref{itm:sw-signal-estimator} as shown in \cref{fig:kindermans-signal-estimator-comparison}.
     \begin{equation}
-        S_a(i)(x) = x_{(i)} (a_{(i)} w_{ij})\label{eq:linear-estimator}
+        S_{a(i)}(x) = x_{(i)} (a_{(i)} w_{ij})\label{eq:linear-estimator}
     \end{equation}
     please note that, while the weights \(w_{ij}\), which are taken from a trained model, and the input-variable of the input-sample \(x_{(i)}\) are fixed parameters, \(a_{(i)}\) must be trained on a given dataset. Details on the training are provided in~\cite{Kindermans.2018}. \Cref{eq:linear-estimator} is an exemplary formulation of \(S_a\) for the input layer.
     \item[\namedlabel{itm:sa+-signal-estimator}{The Two-Component Estimator \(\symbfit{S_{a+-}}\)}{\(\symbfit{S_{a+-}}\)}] is tailored to ReLU-activation functions. \fcite{Kindermans.2018} notice that due to applying ReLU's, the weights used in previous signal estimators \ref{itm:sw-signal-estimator}, \ref{itm:sa-signal-estimator} are only trained on positive signal \(s_{+}\) and distractor \(d_{+}\) values. To account also for negative \(s_{-}, d_{-}\), they split the estimator accordingly
     \begin{equation}
         S_{a+-(i)} = 
         \begin{cases}
-            x_{(i)} (a_{(i)+} w_{ij}),& {\scriptstyle \text{if } (x_{(i)} w_{ij}) > 0}\\
-            x_{(i)} (a_{(i)-} w_{ij}),& {\scriptstyle \text{otherwise}}
+            x_{(i)} (a_{+(i)} w_{ij}),& {\scriptstyle \text{if } (x_{(i)} w_{ij}) > 0}\\
+            x_{(i)} (a_{-(i)} w_{ij}),& {\scriptstyle \text{otherwise}}
         \end{cases}
     \end{equation}
-    again note that, while the weights \(w_{ij}\) and the input-variable \(x_{(i)}\) are fixed parameters, \(a_{(i)+}, a_{(i)-}\) must be trained on a given dataset. Details on the training are provided in~\cite{Kindermans.2018}.
+    again note that, while the weights \(w_{ij}\) and the input-variable \(x_{(i)}\) are fixed parameters, \(a_{+(i)}, a_{-(i)}\) must be trained on a given dataset. Details on the training are provided in~\cite{Kindermans.2018}.
 \end{description}\label{desc:signal-estimators}
 \par
 In summary, \citeauthor{Kindermans.2018} propose 

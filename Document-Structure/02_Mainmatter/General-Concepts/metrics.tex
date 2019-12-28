@@ -17,12 +17,12 @@ Note that the latter two, Gaussian filter and average value for the current inpu
 
 
 \paragraph{Most Relevant and Least Relevant First}
-\gls{morf} (eq1 and eq2) and \gls{lerf} (eq3 and eq4) are both defined recursively \todo{Correctly reference equations}
+\gls{morf} (\cref{eq:morf-base,eq:morf-recursive}) and \gls{lerf} (\cref{eq:lerf-base,eq:lerf-recursive}) are both defined recursively
 \begin{align}
-    \symbfit{x}^{(0)}_{\text{MoRF}} &= \symbfit{x} \\
-    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{MoRF}} &= g(\symbfit{x}^{(k-1)}_{\text{MoRF}}, \symbfit{r}_k) \\
-    \symbfit{x}^{(0)}_{\text{LeRF}} &= \symbfit{x} \\
-    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{LeRF}} &= g(\symbfit{x}^{(k-1)}_{\text{LeRF}}, \symbfit{r}_{L+1-k})
+    \symbfit{x}^{(0)}_{\text{MoRF}} &= \symbfit{x}\label{eq:morf-base} \\
+    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{MoRF}} &= g(\symbfit{x}^{(k-1)}_{\text{MoRF}}, \symbfit{r}_k)\label{eq:morf-recursive} \\
+    \symbfit{x}^{(0)}_{\text{LeRF}} &= \symbfit{x}\label{eq:lerf-base} \\
+    \forall{1 \leq k \leq L}: \symbfit{x}^{(k)}_{\text{LeRF}} &= g(\symbfit{x}^{(k-1)}_{\text{LeRF}}, \symbfit{r}_{L+1-k})\label{eq:lerf-recursive}
 \end{align}
 where \(x^{(n)}_{\text{MoRF / LeRF}}, n \in [0, k]\) is the perturbed input-sample\todo{add \textit{input-sample} to glossary} at iteration \(n\) and by the respective order \gls{morf} / \gls{lerf}.
 
