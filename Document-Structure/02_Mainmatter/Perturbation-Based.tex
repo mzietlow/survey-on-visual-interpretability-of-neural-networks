@@ -6,7 +6,7 @@ Because of this, there are many new approaches in this field.
 Various methods are based on perturbation of input data. In this meta study the focus will be on Prediction Difference Analysis, but multiple other methods will be mentioned and and the current state of research will be explained.
 
 
-\subsection{LIME}
+\subsection{LIME}\label{subsect:lime}
 LIME is another Algorithm that aims to explain the predictions of a NN and is short for “Local Interpretable Model-agnostic Explanations”. It was first introduced by \fcite{Ribeiro.2016} and is freely accessible at https://github.com/marcotcr/lime.
 \par
 It is applicable to different types of data, like pictures and text and computes the most relevant features of this input. For a picture LIME would output the relevant parts of a picture, for a text the decisive words in some form of diagram. The explainers correspond with the actual explanation at 90 to 97\%. Multiple examples will be seen in this paper and compared to other methods~\cite{Ribeiro.2016}.
@@ -18,6 +18,8 @@ Occlusion Methods, otherwise known as Input Masking or Representation Erasure, a
 
 \subsection{Contrastive Explanations Method CEM}
 The \glspl{cem} was first published by \fcite{Dhurandhar.2018} in 2018 in their paper “Explanations based on the Missing: Towards Contrastive Explanations with Pertinent Negatives”.
+\par
+“For example, when justifying the classification of a handwritten image of a 3, the method will identify a subset of non-zero or on-pixels within the 3 which by themselves are sufficient for the image to be predicted as a 3 even if all other pixels are turned off (that is, made zero to match background). Moreover, it will identify a minimal set of off-pixels which if turned on (viz. a horizontal line of pixels at the right top making the 3 look like a 5) will alter the classification”~\cite[2]{Luss.}.
 The \gls{cem} approach aims to identify the minimal amount of pixels to justify a classification, called \glspl{pp}. On the other hand side it identifies the pixels as well, that need to be “turned off” in order to change the classification of the image. These pixels are called \glspl{pn}. Like this, the most important pixels can be found \fcite{Luss.}. 
 \par“For example, when justifying the classification of a handwritten image of a 3, the method will identify a subset of non-zero or on-pixels within the 3 which by themselves are sufficient for the image to be predicted as a 3 even if all other pixels are turned off (that is, made zero to match background). Moreover, it will identify a minimal set of off-pixels which if turned on (viz. a horizontal line of pixels at the right top making the 3 look like a 5) will alter the classification”~\cite[2]{Luss.}.
 This example is visualized in \cref{fig:CEM_Numbers}~\cite{Dhurandhar.2018}.
@@ -69,7 +71,7 @@ The difference can be evaluated as either
     \item[difference of probabilities (output classes)]
     \begin{multline}
         probDiff_{i} (y|x) = \\
-    p(y|x)− p(y|x \backslash A_{i})
+        p(y|x)− p(y|x \backslash A_{i})
     \end{multline}
 \end{description}
 The simplest way of computing \(p(y|x \backslash A_{i})\) is to replace the value of the attribute \(A_{i}\) with a special but unknown value, knowing, that this approach can lead to incorrectness if the modeling technique does not handle unknown values naturally (naive Bayesian classificator).
@@ -115,15 +117,16 @@ Anchors were introduced in 2018 by \fcite{Ribeiro.2018} and can also be referred
 Like in the prediction difference analyses the model is defined as  
 \(f(x) \rightarrow y\). 
 An instance x ist perturbed by a “perturbation distribution” \(D_{x}\) (from now on D). The perturbations D should be in an interpretable form. A is a set of rules, which is applicable on x. \(A(x)\) returns true (1), if all feature predicates are true for instance x.
-If 
+If
+\begin{enumerate*}[label={\roman*)}]
+    \item \(A(x) = 1\) and
+    \item “A is a sufficient condition for \(f(x)\) with high probability”~\cite[2]{Ribeiro.2018} (bigger than \(\tau\)),
+\end{enumerate*}
+then A is an anchor. Formally this can be described with 
 \[
-    A(x) = 1
+    E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ \tau, A(x) = 1.
 \]
- and “A is a sufficient condition for \(f(x)\) with high probability”~\cite[2]{Ribeiro.2018} (bigger than \(\tau\)), then A is an anchor. Formally this can be described with 
-\(
-    E_{D(z|A)} [\mathbb{1}_{f(x)=f(z)}] ≥ \tau, A(x) = 1
-\)
-An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. What LIME is, is explained in section “LIME”. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than \(\tau\). If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
+An example of anchors for texts can be seen in figure 5\todo{cref the correct figure}. LIME is explained in \cref{subsect:lime}. In \cref{fig:Anchor} you can see possible Anchors: e.g.\ for anchor A = {“not”, “bad”} the model will predict “positive “ with a probability of more than \(\tau\). If one or more of these words are missing, there is no anchor and with that it is not certain, what the output will be.
 The paper presents two different ways for finding those anchors: a bottom-up construction or a Beam-Search.
 \begin{figure}
     \includegraphics[width=\textwidth/2]{Anchor}
