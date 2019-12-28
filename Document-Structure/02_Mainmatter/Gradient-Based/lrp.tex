@@ -1,4 +1,4 @@
-\subsection{Layer-Wise Relevance Decomposition}
+\subsection{Layer-Wise Relevance Decomposition}\label{subsect:lrp}
 \begin{figure*}[ht]
     \center{}
     \includegraphics[]{lrp-fig2.PNG}
@@ -13,7 +13,7 @@
         = \sum_{j\in l+1} R_j^{(l+1)} = \sum_{i\in l} R_i^{(l)} \\
         = \dots = \sum_{h\in x} R_h^{(1)}.\label{eq:lw-propagation}
     \end{multline}
-    Informally, \cref{eq:lw-propagation} implies that relevances can be propagated from the predictor-output \(f(x)\) to the input-variables in \(x\).\label[const]{enum:gls-2}
+    Informally, \cref{eq:lw-propagation} implies that relevances can be propagated from the model-output \(f(x)\) to the input-variables in \(x\).\label[const]{enum:gls-2}
     \item the relevance of the \textit{output neuron} is defined as the model-output \(f(x)\).\label[const]{enum:gls-3}
     \item the relevance of \textit{every other neuron} is the sum of its incoming \glspl{message}, formally 
     \begin{equation}
@@ -33,8 +33,8 @@
 \end{enumerate}
 In summary, \gls{lrp} requires a conservation of relevance between layers (\cref{enum:gls-2}), the relevance of a neuron to be both the sum of its incoming weighted \glspl{message} (\cref{enum:gls-4,enum:gls-6}) and the sum of its outgoing weighted \glspl{message} (\cref{enum:gls-5,enum:gls-6}).
 
-\subsection{Taylor-Decomposition}
-As an approximation to \gls{lrp}, \gls{td} was proposed in~\cite{Bach.2015}. It directly defines relevances \(R_{h}^{(1)}\) at the (slightly modified) input-sample \(x'\) and therefore avoids the process of decomposing relevances for each layer. Instead, relevance \(R_{h}^{(1)}\) is defined by developing a first order Taylor series of the input \(x\) around a root point \(x_0\), such that \(f(x_0) = 0\). Informally, \gls{td} attributes relevance by weighting the difference of the image and the root point (\(x-x_0\)) with the partial derivative of the predictor with respect to the input \(x\). Formally
+\subsection{Taylor-Decomposition}\label{subsect:td}
+As an approximation to \gls{lrp}, \gls{td} was proposed in~\cite{Bach.2015}. It directly defines relevances \(R_{h}^{(1)}\) at the (slightly modified) input-sample \(x'\) and therefore avoids the process of decomposing relevances for each layer. Instead, relevance \(R_{h}^{(1)}\) is defined by developing a first order Taylor series of the input \(x\) around a root point \(x_0\), such that \(f(x_0) = 0\). Informally, \gls{td} attributes relevance by weighting the difference of the image and the root point (\(x-x_0\)) with the partial derivative of the model with respect to the input \(x\). Formally
 \begin{equation}
     R_{h}^{(1)} \approx (x-x_0)_{(h)} * \frac{\partial f}{\partial x_{(h)}}(x_0).
 \end{equation}
@@ -54,17 +54,17 @@ A major issue with \gls{td} is satisfying \cref{enum:taylor-closeness}. \fcite{B
 \end{equation}
 and then derive specific weighting parameters by defining \(v_i\).
 \begin{description}
-    \item[\namedlabel{itm:w2weighting}{\(\symbfit{w^2}\)-Weighting}{}] which is similar to \cref{eq:weighted-message} but does only rely on the weights \(w_{ij}\) that connect \(i \text{ and } j\). \(v_i\) is chosen to be \(v_i:=w_{ij}\).
+    \item[\namedlabel{itm:w2weighting}{\(\symbfit{w^2}\)-Weighting}{\(\symbfit{w^2}\)-weighting}] which is similar to \cref{eq:weighted-message} but does only rely on the weights \(w_{ij}\) that connect \(i \text{ and } j\). \(v_i\) is chosen to be \(v_i:=w_{ij}\).
     \begin{equation}
         R_{i\leftarrow j}^{(l,l+1)} = R_{j}^{(l+1)} \frac{w_{ij}^2}{\sum_{h\in (l)} w_{hj}^2}.\label{eq:w2-weighting-dtd}
     \end{equation}
-    \(w^2\)-Weighting is used, when the input-domain is unrestricted, i.e.\ \(x\in \mathbb R^{|x|}\).
-    \item[\namedlabel{itm:z+weighting}{\(\symbfit{z^+}\)-Weighting}{}] is equal to the \(\alpha\beta\)-Rule of \gls{lrp}, with \(\beta=0, \alpha=1\). Here, \(v_i\) is the set of all \(x_i\) for which the correspoding \(w_{ij}\) is positive, formally \(w_{ij}^{+} = \left\{w_{ij} | w_{ij}\geq 0\right\}\) and \(v_i:=\left\{x_i|w_{ij}\in w_{ij}^{+}\right\}\). The weighting therefore is
+    \(w^2\)-weighting is used, when the input-domain is unrestricted, i.e.\ \(x\in \mathbb R^{|x|}\).
+    \item[\namedlabel{itm:z+weighting}{\(\symbfit{z^+}\)-Weighting}{\(\symbfit{z^+}\)-weighting}] is equal to the \(\alpha\beta\)-Rule of \gls{lrp}, with \(\beta=0, \alpha=1\). Here, \(v_i\) is the set of all \(x_i\) for which the correspoding \(w_{ij}\) is positive, formally \(w_{ij}^{+} = \left\{w_{ij} | w_{ij}\geq 0\right\}\) and \(v_i:=\left\{x_i|w_{ij}\in w_{ij}^{+}\right\}\). The weighting therefore is
     \begin{equation}
         R_{i\leftarrow j}^{(l,l+1)} = R_{j}^{(l+1)} \frac{x_i w_{ij}^{+}}{\sum_{h\in (l)} x_(h) w_{hj}^{+}}.\label{eq:dtd-z+}
     \end{equation}
-    In~\cite{Montavon.2017}, \cref{eq:dtd-z+} is modeled with \(x_i w_{ij}^{+}=:z_{ij}^{+}\), from which the name \(z^{+}\)-Weighting is derived.
-    \(z^{+}\)-Weighting is used, when the input-domain is restricted to positive values, for example in a setting with ReLU-activations, i.e.\ \(x\in \mathbb R_{+}^{|x|}\). A generalization of the \(z^{+}\)-Weighting, as discussed in~\cite{Montavon.2017}, is equal to \(\alpha\beta\)-\gls{lrp}.
+    In~\cite{Montavon.2017}, \cref{eq:dtd-z+} is modeled with \(x_i w_{ij}^{+}=:z_{ij}^{+}\), from which the name \(z^{+}\)-weighting is derived.
+    \(z^{+}\)-weighting is used, when the input-domain is restricted to positive values, for example in a setting with ReLU-activations, i.e.\ \(x\in \mathbb R_{+}^{|x|}\). A generalization of the \(z^{+}\)-weighting, as discussed in~\cite{Montavon.2017}, is equal to \(\alpha\beta\)-\gls{lrp}.
     \item[\(\symbfit{z^{\mathscr B}}\)-Weighting] is used, when the input-domain is restricted to an upper- and lower-bound, for example in image-classification tasks. For details, please refer to~\cite[215\psq]{Montavon.2017}
 \end{description}
 \par

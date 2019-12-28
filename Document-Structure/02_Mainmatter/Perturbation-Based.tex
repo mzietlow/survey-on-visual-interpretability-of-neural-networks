@@ -31,7 +31,7 @@ They applied this method to a dataset of handwritten numbers, like seen in the e
 \par 
 In addition they used a a convolutional autoencoder for some results, which improves this method even further. In \cref{fig:CEM_Celebs} the output of \gls{cem} is visualized. 
 \par
-To be able to better see the improvements made by this method, LIME and LRP were applied to the same celebrity dataset. It can clearly be seen, that \gls{cem}'s results are better understandable for humans.
+To be able to better see the improvements made by this method, LIME and \gls{lrp} were applied to the same celebrity dataset. It can clearly be seen, that \gls{cem}'s results are better understandable for humans.
 \begin{figure*}[ht]
     \center{}
     \includegraphics[width=\textwidth]{CEM_Celebs.png}
@@ -96,12 +96,7 @@ It should be kept in mind, that different instances predict different values, so
 \end{figure}
 The results of the prediction difference can then be visualized in a diagram. This special method is called explainVis. \Cref{fig:PDA-titanic} is based on the Titanic dataset and predicts the probability of survival of the person based on travelling class, age and gender.
 \par
-The information difference is shown on the horizontal axis. Weight of evidence and difference of probabilities produce similar graphs and explanations but differ in scale. On the vertical axis the name of the attribute can be found on the left side and the values for chosen instances on the right side. The class probability 
-\[
-    p(y|x)
-\]
-which was calculated by the model is reported on the top.
-The length of the dark grey bar corresponds to the influence of the feature according to the information difference. Positive influence is given on the right-hand side and negative on the left-hand side. The light grey bar represents the influence across all instances for the corresponding attribute value. This shows the overall trend for the feature.
+The information difference is shown on the horizontal axis. Weight of evidence and difference of probabilities produce similar graphs and explanations but differ in scale. On the vertical axis the name of the attribute can be found on the left side and the values for chosen instances on the right side. The class probability \(p(y|x)\) which was calculated by the model is reported on the top. The length of the dark grey bar corresponds to the influence of the feature according to the information difference. Positive influence is given on the right-hand side and negative on the left-hand side. The light grey bar represents the influence across all instances for the corresponding attribute value. This shows the overall trend for the feature.
 \par\fcite{Zintgraf.2017} refined this approach even further. They found, that removing one feature at a time is not enough, because a complex neural network is robust to just one unknown feature, like a pixel in an image. Therefore multiple features should be removed at a time so see an impact. In~\cite{Zintgraf.2017}, images are used to demonstrate this. \citeauthor{Zintgraf.2017} choose patches of connected pixels as their feature sets. The patches have a size of \(k\times k\)-pixel or for an rgb image \(k\times k\times 3\). Because they use a sliding window style the patches overlap, which makes it possible to define the individual pixels impact. Depending on the size of the window different results can be found. 
 \par
 It is visible, that a small window does not show the intended results. On the other hand a large window leads to a blurry and not clearly understandable image as well. Therefore observing the results and varying the window size is necessary, as can be seen in \cref{fig:PDA} (\cite{Zintgraf.2017}). 
@@ -152,7 +147,7 @@ In \cref{fig:ActivationMax} the learned feature “face” is demonstrated. On t
 \begin{figure}
     \center{}
     \includegraphics[width=\textwidth/3]{ActivationMaximization}
-    \caption{Inputs, that activate the “face-neuron” the most.
+    \caption{Inputs that activate the “face-neuron” the most.
     Top: actual input images 
     Bottom: via backpropagation found input~\cite{Le.2012}}\label{fig:ActivationMax}
 \end{figure}

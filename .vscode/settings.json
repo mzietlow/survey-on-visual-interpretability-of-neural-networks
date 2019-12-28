@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "Backpropagation",
         "Krippendorf's",
         "Krippendorff's",
         "MNIST",
@@ -8,6 +9,7 @@
         "currentlabel",
         "dataset",
         "datasets",
+        "deconvolutional",
         "distractor",
         "explainability",
         "heatmap",
