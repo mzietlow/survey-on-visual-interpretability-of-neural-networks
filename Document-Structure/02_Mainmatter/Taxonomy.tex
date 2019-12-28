@@ -11,4 +11,6 @@ Post-modelling explainability, attribution methods, perturbation, gradient, attr
 \end{description}
 
 \subsection{Perturbation-Based}
-Not only Gradient-Based, but many Perturbation-Based methods were developed in the last years (\cite{AmitDhurandhar.2018,Ribeiro.2018,Luss.,Kim.2018,Zintgraf.2017}). They visualize how parts of the input data correspond with certain features and which influence they have on the given output. This is done by altering the input in certain ways and measuring the differences. Results are visualized in either a diagram or a heatmap.
+Not only Gradient-Based, but many Perturbation-Based methods were developed in the last years (\cite{AmitDhurandhar.2018,Ribeiro.2018,Luss.,Kim.2018,Zintgraf.2017}). They visualize how parts of the input data correspond with certain features and which influence they have on the given output. This is done by altering the input in certain ways and measuring the differences. Results are visualized in either a diagram (\cref{subsect:PDA}, \cref{subsect:anchors}) or a heatmap (\cref{subsect:lime}). Some methods like \cref{subsect:lime} are even able, to work with text as well as pictures and can present their results in both, diagrams and heatmaps. 
+\par
+(\Cref{subsect:CEM}) uses an own approach and visualize \glspl{pp} and \glspl{pn}. What these are is explained later. \Cref{subsect:ActivationMax} computes an input for a certain feature, that activates the feature the most, here the output is an image.
